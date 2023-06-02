@@ -10,6 +10,8 @@ schema
 
 type Message @model {
   username: String!
+  name: String!
+  room: String
   avatar: URL
   body: String!
   likes: Int @default(value: 0)

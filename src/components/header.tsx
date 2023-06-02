@@ -1,5 +1,6 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import logo from "../images/logo-c.png";
 
 export function Header() {
   const { data: session } = useSession();
@@ -14,23 +15,25 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Link to graphbase
+              <Image height={60} src={logo} alt="logo" />
             </a>
             <span className="text-white font-bold text-xl">LynkChat</span>
           </p>
           {session ? (
-            <div className="flex space-x-1">
+            <div className="flex items-center space-x-1">
               {session?.user?.image && (
-                <div className="w-12 h-12 rounded overflow-hidden">
+                <div className="w-12 h-12 rounded-full shadow-md shadow-white overflow-hidden">
                   <Image
                     width={50}
                     height={50}
                     src={session?.user?.image}
                     alt={session?.user?.name || "User profile picture"}
                     title={session?.user?.name || "User profile picture"}
+                    className=" rounded-full "
                   />
                 </div>
               )}
+              <div className="text-white">{session?.user?.name}</div>
               <button
                 onClick={() => signOut()}
                 className="bg-white/5 rounded h-12 px-6 font-medium text-white border border-transparent"
@@ -41,7 +44,7 @@ export function Header() {
           ) : (
             <div className="flex items-center">
               <button
-                onClick={() => signIn("github")}
+                onClick={() => signIn("Auht0")}
                 className="bg-white/5 rounded h-12 px-6 font-medium text-white text-lg border border-transparent inline-flex items-center"
               >
                 Sign in

@@ -12,6 +12,7 @@ const GetRecentMessagesQuery = gql`
         node {
           id
           username
+          name
           avatar
           body
           likes

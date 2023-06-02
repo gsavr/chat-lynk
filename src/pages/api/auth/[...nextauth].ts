@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
-import Auth0Provider from "next-auth/providers/auth0";
+//import Auth0Provider from "next-auth/providers/auth0";
+import Auth0Provider from "./auth0";
 import jsonwebtoken from "jsonwebtoken";
 import { JWT } from "next-auth/jwt";
 
@@ -27,11 +28,14 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, profile }) {
       if (profile) {
+        console.log("profile", profile);
         token.username = profile?.login;
       }
       return token;
     },
     session({ session, token }) {
+      // console.log("session in auth", session);
+      // console.log("token in auth", token);
       if (token.username) {
         session.username = token?.username;
       }

@@ -4,9 +4,14 @@ import { useState } from "react";
 import useSound from "use-sound";
 
 const AddNewMessageMutation = gql`
-  mutation AddNewMessage($username: String!, $avatar: URL, $body: String!) {
+  mutation AddNewMessage(
+    $username: String!
+    $name: String!
+    $avatar: URL
+    $body: String!
+  ) {
     messageCreate(
-      input: { username: $username, avatar: $avatar, body: $body }
+      input: { username: $username, name: $name, avatar: $avatar, body: $body }
     ) {
       message {
         id
@@ -22,6 +27,7 @@ export const NewMessageForm = () => {
   const [addNewMessage] = useMutation(AddNewMessageMutation, {
     onCompleted: () => play(),
   });
+  console.log("session in new message", session);
 
   return (
     <form
@@ -31,7 +37,8 @@ export const NewMessageForm = () => {
         if (body) {
           addNewMessage({
             variables: {
-              username: session?.username ?? "",
+              username: session?.user?.email ?? "",
+              name: session?.user?.name ?? "",
               avatar: session?.user?.image,
               body,
             },

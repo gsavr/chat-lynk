@@ -13,6 +13,7 @@ const GetRecentMessagesQuery = gql`
           id
           username
           name
+          room
           avatar
           body
           likes

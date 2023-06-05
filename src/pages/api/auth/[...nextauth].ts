@@ -28,19 +28,25 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, profile }) {
       if (profile) {
-        console.log("profile", profile);
+        //console.log("profile", profile);
         token.username = profile?.login;
       }
       return token;
     },
     session({ session, token }) {
       // console.log("session in auth", session);
-      // console.log("token in auth", token);
-      if (token.username) {
-        session.username = token?.username;
+      //console.log("token in auth", token.sub);
+      if (token.sub) {
+        session.username = token?.sub;
+        session.user.username = token?.sub;
       }
       return session;
     },
+  },
+  theme: {
+    colorScheme: "dark",
+    brandColor: "#000000",
+    buttonText: "#000000",
   },
 };
 

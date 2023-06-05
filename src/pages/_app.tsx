@@ -1,14 +1,13 @@
+import type { AppType } from "next/dist/shared/lib/utils";
 import "../styles/globals.css";
-
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
+import { ApolloProviderWrapper } from "@/components/apollo-provider-wrapper";
 
-import { ApolloProviderWrapper } from "../components/apollo-provider-wrapper";
-
-export default function App({
+const MyApp: AppType = ({
   Component,
   pageProps: { session, ...pageProps },
-}: AppProps) {
+}: AppProps) => {
   return (
     <SessionProvider session={session}>
       <ApolloProviderWrapper>
@@ -16,4 +15,5 @@ export default function App({
       </ApolloProviderWrapper>
     </SessionProvider>
   );
-}
+};
+export default MyApp;

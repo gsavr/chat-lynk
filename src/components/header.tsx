@@ -6,6 +6,7 @@ import { IconUser6Fill } from "./svg-icons";
 
 export const Header: React.FC = () => {
   const { data: session } = useSession();
+  console.log(session);
 
   return (
     <header className="p-4 bg-white/5 border-b border-[#363739]">
@@ -19,7 +20,7 @@ export const Header: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Image height={45} src={logo} alt="logo" />
+                  <Image height={45} src={logo} alt="logo" priority />
                 </a>
                 <span className="text-white font-bold text-xl">LynkChat</span>
               </p>

@@ -21,13 +21,13 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
 
   useEffect(() => {
     const el = document.getElementById("main");
-    /* id main is set in index.tsx ---  */
-
-    el.addEventListener("click", () => {
-      closeDropdownPopover();
-    });
-    return () => el.removeEventListener("click", () => {});
-
+    /* id 'main' is set in index.tsx  */
+    if (el) {
+      el.addEventListener("click", () => {
+        closeDropdownPopover();
+      });
+      return () => el.removeEventListener("click", () => {});
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dropdownPopoverShow]);
 

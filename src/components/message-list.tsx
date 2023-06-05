@@ -35,12 +35,13 @@ export const MessageList = () => {
   }>(GetRecentMessagesQuery, {
     variables: {
       last: 100,
+      //here is the room Id-----------------------------------
     },
   });
 
   useEffect(() => {
     if (!inView) {
-      entry?.target?.scrollIntoView({ behavior: "auto" });
+      entry?.target?.scrollIntoView({ behavior: "smooth" });
     }
   }, [data, entry, inView]);
 
@@ -51,18 +52,17 @@ export const MessageList = () => {
       </div>
     );
 
-  if (error)
-    return (
-      <p className="text-white">Something went wrong. Refresh to try again.</p>
-    );
+  if (error) return <p className="text-white">Please Refresh.</p>;
 
   return (
     <div className="flex flex-col space-y-3 overflow-y-scroll no-scrollbar w-full">
       {!inView && data && (
         <div className="py-1.5 w-full px-3 z-10 text-xs absolute flex justify-center bottom-0 mb-[120px] inset-x-0">
           <button
-            className="py-1.5 px-3 text-xs bg-[#1c1c1f] border border-[#363739] rounded-full text-white font-medium"
-            onClick={() => entry?.target?.scrollIntoView({ behavior: "auto" })}
+            className="py-1.5 px-3 text-xs bg-[#77777b] border border-none rounded-full text-white font-medium"
+            onClick={() =>
+              entry?.target?.scrollIntoView({ behavior: "smooth" })
+            }
           >
             Scroll to see latest messages
           </button>

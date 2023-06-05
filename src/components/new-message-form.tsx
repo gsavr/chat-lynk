@@ -20,14 +20,14 @@ const AddNewMessageMutation = gql`
   }
 `;
 
-export const NewMessageForm = () => {
+export const NewMessageForm: React.FC = () => {
   const { data: session } = useSession();
   const [play] = useSound("sent.wav");
   const [body, setBody] = useState("");
   const [addNewMessage] = useMutation(AddNewMessageMutation, {
     onCompleted: () => play(),
   });
-  console.log("session in new message", session);
+  //console.log("session in new message", session);
 
   return (
     <form

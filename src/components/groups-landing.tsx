@@ -34,7 +34,8 @@ export const GroupsLanding: React.FC = () => {
   };
   return (
     <>
-      <div className="container mx-auto flex flex-col items-center justify-center h-screen p-4">
+      <div className="container mx-auto flex flex-col gap-6 items-center justify-center flex-1 p-4">
+        <p>Create a new Group or join on left</p>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -53,10 +54,10 @@ export const GroupsLanding: React.FC = () => {
           />
           <button
             type="submit"
-            className="bg-[#222226] rounded h-12 font-medium text-white w-24 text-lg border border-transparent hover:bg-[#363739] transition"
+            className="bg-slate-200 p-0 rounded h-12 text-black w-40 border border-transparent hover:bg-[#a1a5ae] transition cursor-pointer disabled:bg-slate-500"
             disabled={!groupName}
           >
-            Create Chat Room
+            Create Group
           </button>
         </form>
       </div>

@@ -7,6 +7,7 @@ import { Header } from "@/components/header";
 
 import logo from "../images/logo-c.png";
 import Image from "next/image";
+import { Footer } from "@/components/footer";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
         <meta name="description" content="" />
       </Head>
 
-      <div id="main" className="flex flex-col bg-cover">
+      <div id="main" className="flex flex-col h-screen">
         <Header />
         {session ? (
           <></>
@@ -50,6 +51,7 @@ const Home: NextPage = () => {
             )}
           </div>
         )}
+        <Footer />
       </div>
     </>
   );

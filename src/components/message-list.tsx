@@ -48,7 +48,7 @@ export const MessageList: React.FC<MessageListProps> = ({ groupId }) => {
   if (error) return <p className="text-white">Please Refresh.</p>;
 
   return (
-    <div className="flex flex-col space-y-3 overflow-y-scroll no-scrollbar w-full">
+    <div className="flex h-full flex-col space-y-3 overflow-y-hidden no-scrollbar w-full">
       {!inView && data && (
         <div className="py-1.5 w-full px-3 z-10 text-xs absolute flex justify-center bottom-0 mb-[120px] inset-x-0">
           <button

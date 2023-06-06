@@ -2,30 +2,33 @@ import { gql } from "@apollo/client";
 
 export const ADD_NEW_MESSAGE_MUTATION = gql`
   mutation AddNewMessage(
-    $groupId: String!
     $username: String!
     $name: String!
     $avatar: URL
     $body: String!
+    $group: ID!
   ) {
     messageCreate(
       input: {
-        groupId: $groupId
         username: $username
         name: $name
         avatar: $avatar
         body: $body
+        group: { link: $group }
       }
     ) {
       message {
         id
-        groupId
         username
         name
         avatar
         body
         likes
         createdAt
+        group {
+          id
+          name
+        }
       }
     }
   }

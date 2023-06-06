@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { getServerSession } from "next-auth/next";
@@ -14,7 +13,7 @@ interface GroupsProps {
 
 const Groups: NextPage<GroupsProps> = (props) => {
   const { groupId } = props;
-  console.log(groupId);
+  //console.log(groupId);
   return (
     <>
       <Head>

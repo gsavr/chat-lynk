@@ -1,59 +1,53 @@
-import { useMutation, gql } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import useSound from "use-sound";
-import { ADD_NEW_MESSAGE_MUTATION } from "../gql/mutations/addNewMessage";
+import { ADD_NEW_MESSAGE_MUTATION } from "@/gql/mutations/addNewMessage";
 
 interface NewMessageFormProps {
-  groupId: string;
+  //groupId: string;
+  groupDBId: string;
+  loadingCurrentRoom: boolean;
 }
 
-export const NewMessageForm: React.FC<NewMessageFormProps> = ({ groupId }) => {
+export const NewMessageForm: React.FC<NewMessageFormProps> = ({
+  //groupId,
+  groupDBId,
+  loadingCurrentRoom,
+}) => {
   const { data: session } = useSession();
   const [play] = useSound("sent.wav");
   const [body, setBody] = useState("");
+
   const [addNewMessage] = useMutation(ADD_NEW_MESSAGE_MUTATION, {
     onCompleted: () => play(),
   });
+
+  //console.log("NEW_MESSAGE_CURRENT_ROOM", groupData?.group);
   //console.log("session in new message", session);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (body) {
       addNewMessage({
         variables: {
-          groupId: groupId,
           username: session?.user?.username ?? "",
           name: session?.user?.name ?? "",
           avatar: session?.user?.image,
           body,
+          group: groupDBId,
         },
-        update: (store, { data }) => {
-          const newMessage = data?.messageCreate?.message;
-          //console.log(newMessage);
-          if (newMessage) {
-            store.modify({
-              fields: {
-                group(existingGroup = {}) {
-                  const newEdge = {
-                    __typename: "MessageEdge",
-                    node: newMessage,
-                  };
-
-                  return {
-                    ...existingGroup,
-                    messages: {
-                      ...existingGroup.messages,
-                      edges: [newEdge, ...existingGroup.messages.edges],
-                    },
-                  };
-                },
-              },
-            });
-          }
-        },
-      });
-      setBody("");
+      })
+        .then((result) => {
+          // Handle the result of the mutation
+          //console.log("Message created:", result?.data?.messageCreate?.message);
+          setBody("");
+        })
+        .catch((error) => {
+          // Handle any errors that occurred during the mutation
+          console.error("Error creating message:", error);
+        });
     }
   };
 
@@ -64,6 +58,7 @@ export const NewMessageForm: React.FC<NewMessageFormProps> = ({ groupId }) => {
     >
       <input
         autoFocus
+        disabled={loadingCurrentRoom}
         id="message"
         name="message"
         placeholder="Write a message..."

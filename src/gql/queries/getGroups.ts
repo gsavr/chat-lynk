@@ -1,13 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_GROUPS_QUERY = gql`
-  query GetAllRooms {
-    groupCollection(first: 100) {
+  query GetAllRooms @live {
+    groupCollection(last: 100) {
       edges {
         node {
+          id
           groupId
           name
-          messages(first: 100) {
+          messages(last: 100) {
             edges {
               node {
                 id

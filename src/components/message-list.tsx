@@ -7,9 +7,13 @@ import { Message } from "@/components/message";
 
 interface MessageListProps {
   groupId: string;
+  groupDBId: string;
 }
 
-export const MessageList: React.FC<MessageListProps> = ({ groupId }) => {
+export const MessageList: React.FC<MessageListProps> = ({
+  groupId,
+  groupDBId,
+}) => {
   //console.log("m-list", groupId);
   const [scrollRef, inView, entry] = useInView({
     trackVisibility: true,
@@ -20,12 +24,13 @@ export const MessageList: React.FC<MessageListProps> = ({ groupId }) => {
     messageCollection: { edges: { node: IMessage }[] };
   }>(GET_RECENT_MESSAGES_QUERY, {
     variables: {
+      groupDBId,
       last: 100,
     },
   });
   //console.log("m-list", loading);
   //console.log("m-list", error);
-  //console.log("m-list", data);
+  console.log("m-list", data);
 
   useEffect(() => {
     if (!inView) {
@@ -36,7 +41,7 @@ export const MessageList: React.FC<MessageListProps> = ({ groupId }) => {
   if (loading)
     return (
       <div className="h-full flex items-center justify-center">
-        <p className="text-white">Fetching most recent chat messages.</p>
+        <p className="text-white">Getting most recent chat messages.</p>
       </div>
     );
 

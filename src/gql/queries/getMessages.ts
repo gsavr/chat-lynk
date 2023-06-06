@@ -1,31 +1,29 @@
-/* import { gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const GET_RECENT_MESSAGES_QUERY = gql`
-  query GetRecentMessages($groupId: String!, $last: Int) @live {
-    group(groupId: $groupId) {
-      edges {
-        node {
-          messages(last: $last) {
-            edges {
-              node {
-                id
-                groupId
-                username
-                name
-                avatar
-                body
-                likes
-                createdAt
-              }
-            }
+  query Group($id: ID!, $last: Int) @live {
+    group(by: { id: $id }) {
+      id
+      name
+      messages(last: $last) {
+        edges {
+          node {
+            id
+            group
+            username
+            name
+            avatar
+            body
+            likes
+            createdAt
           }
         }
       }
     }
   }
-`; */
+`;
 
-//------- before there were groups
+/* //------- before there were groups
 import { gql } from "@apollo/client";
 
 export const GET_RECENT_MESSAGES_QUERY = gql`
@@ -34,7 +32,7 @@ export const GET_RECENT_MESSAGES_QUERY = gql`
       edges {
         node {
           id
-          groupId
+          group
           username
           name
           avatar
@@ -45,4 +43,4 @@ export const GET_RECENT_MESSAGES_QUERY = gql`
       }
     }
   }
-`;
+`; */

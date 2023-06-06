@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import { CREATE_GROUP_MUTATION } from "../gql/mutations/createGroup";
+import { CREATE_GROUP_MUTATION } from "@/gql/mutations/createGroup";
 import { v4 as uuid } from "uuid";
 
 export const GroupsLanding: React.FC = () => {

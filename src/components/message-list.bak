@@ -1,9 +1,28 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { GET_RECENT_MESSAGES_QUERY } from "@/gql/queries/getMessages";
+
 import type { Message as IMessage } from "@/components/message";
 import { Message } from "@/components/message";
+
+const GetRecentMessagesQuery = gql`
+  query GetRecentMessages($last: Int) @live {
+    messageCollection(last: $last) {
+      edges {
+        node {
+          id
+          groupId
+          username
+          name
+          avatar
+          body
+          likes
+          createdAt
+        }
+      }
+    }
+  }
+`;
 
 interface MessageListProps {
   groupId: string;
@@ -18,14 +37,15 @@ export const MessageList: React.FC<MessageListProps> = ({ groupId }) => {
 
   const { loading, error, data } = useQuery<{
     messageCollection: { edges: { node: IMessage }[] };
-  }>(GET_RECENT_MESSAGES_QUERY, {
+  }>(GetRecentMessagesQuery, {
     variables: {
+      groupId,
       last: 100,
     },
   });
-  //console.log("m-list", loading);
-  //console.log("m-list", error);
-  //console.log("m-list", data);
+  console.log("m-list", loading);
+  console.log("m-list", error);
+  console.log("m-list", loading);
 
   useEffect(() => {
     if (!inView) {

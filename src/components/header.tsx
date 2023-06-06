@@ -6,7 +6,7 @@ import { IconUser6Fill } from "./svg-icons";
 
 export const Header: React.FC = () => {
   const { data: session } = useSession();
-  console.log(session);
+  //console.log(session);
 
   return (
     <header className="p-4 bg-white/5 border-b border-[#363739]">

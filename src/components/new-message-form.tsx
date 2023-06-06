@@ -1,51 +1,65 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import useSound from "use-sound";
+import { ADD_NEW_MESSAGE_MUTATION } from "../gql/mutations/addNewMessage";
 
-const AddNewMessageMutation = gql`
-  mutation AddNewMessage(
-    $username: String!
-    $name: String!
-    $avatar: URL
-    $body: String!
-  ) {
-    messageCreate(
-      input: { username: $username, name: $name, avatar: $avatar, body: $body }
-    ) {
-      message {
-        id
-      }
-    }
-  }
-`;
+interface NewMessageFormProps {
+  groupId: string;
+}
 
-export const NewMessageForm: React.FC = () => {
+export const NewMessageForm: React.FC<NewMessageFormProps> = ({ groupId }) => {
   const { data: session } = useSession();
   const [play] = useSound("sent.wav");
   const [body, setBody] = useState("");
-  const [addNewMessage] = useMutation(AddNewMessageMutation, {
+  const [addNewMessage] = useMutation(ADD_NEW_MESSAGE_MUTATION, {
     onCompleted: () => play(),
   });
   //console.log("session in new message", session);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (body) {
+      addNewMessage({
+        variables: {
+          groupId: groupId,
+          username: session?.user?.username ?? "",
+          name: session?.user?.name ?? "",
+          avatar: session?.user?.image,
+          body,
+        },
+        update: (store, { data }) => {
+          const newMessage = data?.messageCreate?.message;
+          //console.log(newMessage);
+          if (newMessage) {
+            store.modify({
+              fields: {
+                group(existingGroup = {}) {
+                  const newEdge = {
+                    __typename: "MessageEdge",
+                    node: newMessage,
+                  };
+
+                  return {
+                    ...existingGroup,
+                    messages: {
+                      ...existingGroup.messages,
+                      edges: [newEdge, ...existingGroup.messages.edges],
+                    },
+                  };
+                },
+              },
+            });
+          }
+        },
+      });
+      setBody("");
+    }
+  };
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-
-        if (body) {
-          addNewMessage({
-            variables: {
-              username: session?.user?.email ?? "",
-              name: session?.user?.name ?? "",
-              avatar: session?.user?.image,
-              body,
-            },
-          });
-          setBody("");
-        }
-      }}
+      onSubmit={(e) => handleSubmit(e)}
       className="flex items-center space-x-3"
     >
       <input

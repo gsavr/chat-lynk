@@ -6,6 +6,7 @@ import { authOptions } from "../api/auth/[...nextauth]";
 import { GroupsLanding } from "@/components/groups-landing";
 import { MessageWindow } from "@/components/message-window";
 import { Header } from "@/components/header";
+import { GroupsSidebar } from "@/components/groups-sidebar";
 
 interface GroupsProps {
   groupId: string;
@@ -21,7 +22,8 @@ const Groups: NextPage<GroupsProps> = (props) => {
       </Head>
       <div id="main" className="flex flex-col bg-cover">
         <Header />
-        {!groupId ? <GroupsLanding /> : <MessageWindow />}
+        <GroupsSidebar />
+        {!groupId ? <GroupsLanding /> : <MessageWindow groupId={groupId} />}
       </div>
     </>
   );

@@ -9,10 +9,16 @@ schema
 }
 
 type Message @model {
+  groupId: String!
   username: String!
   name: String!
-  room: String
   avatar: URL
   body: String!
   likes: Int @default(value: 0)
+}
+
+type Group @model {
+  groupId: String!
+  name: String!
+  messages: [Message]
 }

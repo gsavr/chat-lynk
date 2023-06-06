@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export type Message = {
   id: string;
+  groupId: string;
   username: string;
   name: string;
   avatar?: string;
@@ -23,19 +24,19 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
   return (
     <div
       className={`flex flex-col relative space-x-1 space-y-1 ${
-        message.username === session?.user?.email
+        message.username === session?.user?.username
           ? "text-right self-end"
           : "text-left"
       }`}
     >
-      {message.username !== session?.user?.email && (
+      {message.username !== session?.user?.username && (
         <small className="text-xs text-white/50">
           {message.name || message.username}&nbsp;
         </small>
       )}
       <div
         className={`flex relative space-x-1 ${
-          message.username === session?.user?.email
+          message.username === session?.user?.username
             ? "flex-row-reverse space-x-reverse"
             : "flex-row"
         }`}
@@ -53,7 +54,7 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
         )}
         <span
           className={`inline-flex rounded-t-3xl shadow-sm shadow-[#000] space-x-2 items-start p-3 text-white ${
-            message.username === session?.user?.email
+            message.username === session?.user?.username
               ? "bg-[#279599] rounded-l-3xl"
               : "bg-[#363739] rounded-r-3xl"
           } `}

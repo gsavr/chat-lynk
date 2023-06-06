@@ -19,10 +19,17 @@ const Groups: NextPage<GroupsProps> = (props) => {
       <Head>
         <title>LynkChat</title>
       </Head>
-      <div id="main" className="flex flex-col bg-cover">
+      <div
+        id="main"
+        className=" flex flex-col w-screen max-h-fit bg-[#2d3241] overflow-hidden"
+      >
         <Header />
-        <GroupsSidebar />
-        {!groupId ? <GroupsLanding /> : <MessageWindow groupId={groupId} />}
+        <div className="flex h-[93vh]">
+          <GroupsSidebar groupId={groupId} />
+          <div className="flex flex-1 flex-col w-full">
+            {!groupId ? <GroupsLanding /> : <MessageWindow groupId={groupId} />}
+          </div>
+        </div>
       </div>
     </>
   );

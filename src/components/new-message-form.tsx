@@ -70,7 +70,7 @@ export const NewMessageForm: React.FC<NewMessageFormProps> = ({
       />
       <button
         type="submit"
-        className="bg-[#222226] rounded h-12 font-medium text-white w-24 text-lg border border-transparent hover:bg-[#363739] transition"
+        className="bg-slate-200 rounded h-12  text-black hover:bg-[#a1a5ae] w-24 text-lg border border-transparent transition cursor-pointer disabled:bg-slate-500"
         disabled={!body || !session}
       >
         Send

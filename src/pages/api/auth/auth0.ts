@@ -24,7 +24,6 @@ export default function Auth0<P extends Auth0Profile>(
         name: profile.name,
         email: profile.email,
         image: profile.picture,
-        giorgio: "hello",
       };
     },
     style: {

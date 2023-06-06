@@ -16,6 +16,8 @@ interface Props {
   message: Message;
 }
 
+// Messages show different styling whther they were sent by current user or another user
+
 export const Message: React.FC<Props> = ({ message }: Props) => {
   const { data: session } = useSession();
   //console.log("message", message);

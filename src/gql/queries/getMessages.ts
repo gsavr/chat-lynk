@@ -1,12 +1,13 @@
 import { gql } from "@apollo/client";
+//DO NOT PASS a 'last' var since it is not used in the group()
 
 export const GET_RECENT_MESSAGES_QUERY = gql`
-  query Group($id: ID!, $last: Int) @live {
-    group(by: { id: $id }) {
+  query Group($groupId: String!) @live {
+    group(by: { groupId: $groupId }) {
       id
       groupId
       name
-      messages(last: $last) {
+      messages(last: 100) {
         edges {
           node {
             id

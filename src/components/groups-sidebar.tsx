@@ -1,7 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { GET_ALL_GROUPS_QUERY } from "@/gql/queries/getGroups";
+import Link from "next/link";
 
 export const GroupsSidebar: React.FC = () => {
+  //gets list of rooms to display
   const { loading, error, data } = useQuery(GET_ALL_GROUPS_QUERY);
   // console.log("Groups", data);
 
@@ -19,7 +21,7 @@ export const GroupsSidebar: React.FC = () => {
       <ul>
         {data?.groupCollection?.edges.map(({ node }: any) => (
           <li key={node.groupId}>
-            <a href={`/groups/${node.groupId}`}>{node.name}</a>
+            <Link href={`/groups/${node.groupId}`}>{node.name}</Link>
           </li>
         ))}
       </ul>

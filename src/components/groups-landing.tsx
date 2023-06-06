@@ -9,6 +9,7 @@ export const GroupsLanding: React.FC = () => {
   const [groupName, setGroupName] = useState("");
   const [createGroup] = useMutation(CREATE_GROUP_MUTATION);
 
+  //create group when there is a name -- groupId is used for quering db and link
   const createRoom = () => {
     if (!groupName) {
       return;
@@ -23,7 +24,7 @@ export const GroupsLanding: React.FC = () => {
     })
       .then((result) => {
         // Handle the result of the mutation
-        console.log("Group created:", result.data.groupCreate.group);
+        //console.log("Group created:", result.data.groupCreate.group);
         router.push(`/groups/${groupId}`);
       })
       .catch((error) => {

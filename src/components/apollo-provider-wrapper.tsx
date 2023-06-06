@@ -15,7 +15,7 @@ import { setContext } from "@apollo/client/link/context";
 const httpLink = new HttpLink({
   uri: process.env.NEXT_PUBLIC_GRAFBASE_API_URL,
 });
-
+//for live query
 const sseLink = new SSELink({
   uri: process.env.NEXT_PUBLIC_GRAFBASE_API_URL!,
 });

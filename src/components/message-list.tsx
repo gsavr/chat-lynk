@@ -7,31 +7,31 @@ import { Message } from "@/components/message";
 
 interface MessageListProps {
   groupId: string;
-  groupDBId: string;
 }
 
-export const MessageList: React.FC<MessageListProps> = ({
-  groupId,
-  groupDBId,
-}) => {
+export const MessageList: React.FC<MessageListProps> = ({ groupId }) => {
   //console.log("m-list", groupId);
+
+  //tracks location of page
   const [scrollRef, inView, entry] = useInView({
     trackVisibility: true,
     delay: 1000,
   });
 
+  //query all messages for this group
   const { loading, error, data } = useQuery<{
     group: { messages: { edges: { node: IMessage }[] } };
   }>(GET_RECENT_MESSAGES_QUERY, {
     variables: {
-      groupDBId,
+      groupId,
       last: 100,
     },
   });
   //console.log("m-list", loading);
-  console.log("m-list", error);
-  console.log("m-list", data);
+  //console.log("m-list", error);
+  //console.log("m-list", data);
 
+  //scrolls to new message
   useEffect(() => {
     if (!inView) {
       entry?.target?.scrollIntoView({ behavior: "smooth" });

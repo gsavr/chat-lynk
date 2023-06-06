@@ -19,6 +19,7 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
   const [show, setShow] = useState("hidden");
 
+  //event listener to close dropdown when clicking outside it
   useEffect(() => {
     const el = document.getElementById("main");
     /* id 'main' is set in index.tsx  */
@@ -31,10 +32,13 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dropdownPopoverShow]);
 
+  //open dropdown
   const openDropdownPopover = () => {
     setDropdownPopoverShow(true);
     setShow("flex");
   };
+
+  //close dropdown
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
     setShow("hidden");
@@ -54,6 +58,7 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
                   : openDropdownPopover();
               }}
             >
+              {/* image needed to be inside div to show  */}
               <div className="w-[50px] h-[50px] rounded-full">
                 {image ? (
                   <Image
@@ -81,13 +86,13 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
                 {name}
               </div>
               <Link
-                href="#pablo"
+                href="/"
                 className={
                   "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent  text-white"
                 }
-                onClick={(e) => e.preventDefault()}
+                //onClick={(e) => e.preventDefault()}
               >
-                Account
+                Create / Join a room
               </Link>
               <div className="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-85" />
               <button

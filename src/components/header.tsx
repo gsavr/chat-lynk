@@ -3,8 +3,10 @@ import Image from "next/image";
 import logo from "../images/logo-c.png";
 import { DropdownAccount } from "./dropdown-account";
 import { IconUser6Fill } from "./svg-icons";
+import Link from "next/link";
 
 export const Header: React.FC = () => {
+  //get user info from auth0
   const { data: session } = useSession();
   //console.log(session);
 
@@ -15,13 +17,9 @@ export const Header: React.FC = () => {
           {session ? (
             <>
               <p className="inline-flex items-center space-x-3">
-                <a
-                  href="https://grafbase.com?ref=chatbase"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href="/">
                   <Image height={45} src={logo} alt="logo" priority />
-                </a>
+                </Link>
                 <span className="text-white font-bold text-xl">LynkChat</span>
               </p>
               <div className="flex items-center space-x-1">

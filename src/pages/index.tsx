@@ -4,8 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { Header } from "@/components/header";
-import { MessageList } from "@/components/message-list";
-import { NewMessageForm } from "@/components/new-message-form";
+
 import logo from "../images/logo-c.png";
 import Image from "next/image";
 
@@ -58,6 +57,7 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getServerSideProps = async (ctx: any) => {
+  //see if user is logged in - navigate to '/groups' if so
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
   if (!!session) {
     return {

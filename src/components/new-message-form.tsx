@@ -19,6 +19,7 @@ export const NewMessageForm: React.FC<NewMessageFormProps> = ({
   const [play] = useSound("sent.wav");
   const [body, setBody] = useState("");
 
+  //mutation to add message to room
   const [addNewMessage] = useMutation(ADD_NEW_MESSAGE_MUTATION, {
     onCompleted: () => play(),
   });
@@ -29,6 +30,7 @@ export const NewMessageForm: React.FC<NewMessageFormProps> = ({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    //only add new message if there is content
     if (body) {
       addNewMessage({
         variables: {

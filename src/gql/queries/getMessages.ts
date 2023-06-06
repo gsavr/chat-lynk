@@ -4,12 +4,12 @@ export const GET_RECENT_MESSAGES_QUERY = gql`
   query Group($id: ID!, $last: Int) @live {
     group(by: { id: $id }) {
       id
+      groupId
       name
       messages(last: $last) {
         edges {
           node {
             id
-            group
             username
             name
             avatar

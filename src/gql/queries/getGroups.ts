@@ -8,16 +8,6 @@ export const GET_ALL_GROUPS_QUERY = gql`
           id
           groupId
           name
-          messages(last: 100) {
-            edges {
-              node {
-                id
-                body
-                username
-                createdAt
-              }
-            }
-          }
         }
       }
     }

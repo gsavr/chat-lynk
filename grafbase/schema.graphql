@@ -15,7 +15,7 @@ type Message @model {
   body: String!
   likes: Int @default(value: 0)
   groupId: String!
-  group: Group!
+  group: Group
 }
 
 type Group @model {

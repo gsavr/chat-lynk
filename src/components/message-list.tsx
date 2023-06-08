@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { GET_RECENT_MESSAGES_QUERY } from "@/gql/queries/getMessages";
-import type { Message as IMessage } from "@/components/message";
 import { Message } from "@/components/message";
 
 interface MessageListProps {
@@ -32,6 +31,14 @@ export const MessageList: React.FC<MessageListProps> = ({
   //console.log("m-list", loading);
   //console.log("m-list", error);
   //console.log("m-list", data);
+
+  const renderMessages = () => {
+    return data?.messageCollection?.edges?.map(({ node }: any) => {
+      //console.log(node.group.id);
+      if (node?.groupId === groupId)
+        return <Message key={node?.id} message={node} />;
+    });
+  };
 
   //scrolls to new message
   useEffect(() => {
@@ -63,9 +70,7 @@ export const MessageList: React.FC<MessageListProps> = ({
           </button>
         </div>
       )}
-      {data?.messageCollection?.edges?.map(({ node }: any) => (
-        <Message key={node?.id} message={node} />
-      ))}
+      {renderMessages()}
       <div ref={scrollRef} />
     </div>
   );

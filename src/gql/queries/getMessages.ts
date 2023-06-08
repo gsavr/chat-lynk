@@ -33,9 +33,7 @@ export const GET_RECENT_MESSAGES_QUERY = gql`
       edges {
         node {
           id
-          group {
-            id
-          }
+          groupId
           username
           name
           avatar

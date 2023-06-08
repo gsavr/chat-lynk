@@ -20,7 +20,7 @@ export const MessageWindow: React.FC<MessageWindowProps> = (props) => {
   });
   const groupDBId = groupData?.group?.id;
   //console.log("MESSAGE_WINDOW_ CURRENT ROOM", groupData);
-  //console.log(groupDBId);
+  console.log(groupDBId);
 
   return (
     <>
@@ -28,13 +28,14 @@ export const MessageWindow: React.FC<MessageWindowProps> = (props) => {
       <div className="flex-1 overflow-y-scroll no-scrollbar p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-center">
-            <MessageList groupId={groupId} />
+            <MessageList groupId={groupId} groupDBId={groupDBId} />
           </div>
         </div>
       </div>
       <div className=" w-[100%] rounded p-6 bg-white/5 border-t border-[#363739]">
         <div className="max-w-4xl mx-auto ">
           <NewMessageForm
+            groupId={groupId}
             groupDBId={groupDBId}
             loadingCurrentRoom={loadingCurrentRoom}
           />

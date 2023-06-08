@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 //DO NOT PASS a 'last' var since it is not used in the group()
 
 export const GET_RECENT_MESSAGES_QUERY = gql`
-  query Group($groupId: String!) @live {
-    group(by: { groupId: $groupId }) {
+  query Group($id: ID!) @live {
+    group(by: { id: $id }) {
       id
       groupId
       name

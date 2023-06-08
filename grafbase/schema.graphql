@@ -14,7 +14,8 @@ type Message @model {
   avatar: URL
   body: String!
   likes: Int @default(value: 0)
-  group: Group
+  groupId: String!
+  group: Group!
 }
 
 type Group @model {

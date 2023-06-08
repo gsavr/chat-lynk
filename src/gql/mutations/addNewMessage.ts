@@ -6,6 +6,7 @@ export const ADD_NEW_MESSAGE_MUTATION = gql`
     $name: String!
     $avatar: URL
     $body: String!
+    $groupId: String!
     $group: ID!
   ) {
     messageCreate(
@@ -14,6 +15,7 @@ export const ADD_NEW_MESSAGE_MUTATION = gql`
         name: $name
         avatar: $avatar
         body: $body
+        groupId: $groupId
         group: { link: $group }
       }
     ) {

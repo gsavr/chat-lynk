@@ -5,13 +5,13 @@ import useSound from "use-sound";
 import { ADD_NEW_MESSAGE_MUTATION } from "@/gql/mutations/addNewMessage";
 
 interface NewMessageFormProps {
-  //groupId: string;
+  groupId: string;
   groupDBId: string;
   loadingCurrentRoom: boolean;
 }
 
 export const NewMessageForm: React.FC<NewMessageFormProps> = ({
-  //groupId,
+  groupId,
   groupDBId,
   loadingCurrentRoom,
 }) => {
@@ -38,6 +38,7 @@ export const NewMessageForm: React.FC<NewMessageFormProps> = ({
           name: session?.user?.name ?? "",
           avatar: session?.user?.image,
           body,
+          groupId,
           group: groupDBId,
         },
       })

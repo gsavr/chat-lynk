@@ -7,9 +7,13 @@ import { Message } from "@/components/message";
 
 interface MessageListProps {
   groupId: string;
+  groupDBId: string;
 }
 
-export const MessageList: React.FC<MessageListProps> = ({ groupId }) => {
+export const MessageList: React.FC<MessageListProps> = ({
+  groupId,
+  groupDBId,
+}) => {
   //console.log("m-list", groupId);
 
   //tracks location of page
@@ -23,13 +27,16 @@ export const MessageList: React.FC<MessageListProps> = ({ groupId }) => {
     group: { messages: { edges: { node: IMessage }[] } };
   }>(GET_RECENT_MESSAGES_QUERY, {
     variables: {
-      groupId,
+      id: groupDBId,
       last: 100,
     },
   });
   //console.log("m-list", loading);
   //console.log("m-list", error);
-  //console.log("m-list", data);
+
+  useEffect(() => {
+    console.log("m-list", data);
+  }, [data]);
 
   //scrolls to new message
   useEffect(() => {

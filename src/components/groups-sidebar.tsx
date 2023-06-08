@@ -21,7 +21,7 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({ groupId }) => {
   }
 
   return (
-    <div className="rounded bg-slate-200 px-2 pt-5  border flex flex-col gap-3 text-black border-black md:w-[15%]">
+    <div className="rounded bg-slate-200 px-2 pt-5  border flex flex-col gap-3 text-black border-black md:w-[15%] overflow-auto">
       <div className="flex justify-between items-start">
         <h2 className="text-lg w-full pb-3 pl-3 border-0 border-b border-black">
           Groups

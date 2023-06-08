@@ -5,9 +5,17 @@ import { IconBxMessageSquareAdd } from "./svg-icons";
 
 interface GroupsSidebarProps {
   groupId: string;
+  open: string;
+  opening: string;
+  closeMobileMenu: () => void;
 }
 
-export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({ groupId }) => {
+export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
+  groupId,
+  open,
+  closeMobileMenu,
+  opening,
+}) => {
   //gets list of rooms to display
   const { loading, error, data } = useQuery(GET_ALL_GROUPS_QUERY);
   // console.log("Groups", data);
@@ -21,12 +29,14 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({ groupId }) => {
   }
 
   return (
-    <div className="rounded bg-slate-200 px-2 pt-5  border flex flex-col gap-3 text-black border-black md:w-[15%] overflow-auto">
-      <div className="flex justify-between items-start">
-        <h2 className="text-lg w-full pb-3 pl-3 border-0 border-b border-black">
+    <div
+      className={`${open} ${opening} mobile-menu flex w-full flex-col gap-3 overflow-auto  rounded border border-black bg-slate-200 px-2 pt-5 text-black md:flex md:w-[15%]`}
+    >
+      <div className="flex items-start justify-between">
+        <h2 className="w-full border-0 border-b border-black pb-3 pl-3 text-lg">
           Groups
         </h2>
-        <Link href={"/"} className="">
+        <Link href={"/"} className="" onClick={() => closeMobileMenu()}>
           <IconBxMessageSquareAdd />{" "}
         </Link>
       </div>
@@ -35,9 +45,10 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({ groupId }) => {
           <Link
             key={node.groupId}
             href={`/groups/${node.groupId}`}
-            className={`text-left pl-3 ${
-              node.groupId === groupId && "bg-slate-600 rounded text-white"
+            className={`pl-3 text-left ${
+              node.groupId === groupId && "rounded bg-slate-600 text-white"
             }`}
+            onClick={() => closeMobileMenu()}
           >
             <button>{node.name}</button>
           </Link>

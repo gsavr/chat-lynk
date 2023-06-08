@@ -43,22 +43,24 @@ export const GroupsLanding: React.FC = () => {
           }}
           className="flex items-center space-x-3"
         >
-          <input
-            autoFocus
-            id="groupName"
-            name="groupName"
-            placeholder="Group Name"
-            value={groupName}
-            onChange={(e) => setGroupName(e.target.value)}
-            className="flex-1 h-12 px-3 rounded bg-[#222226] border border-[#222226] focus:border-[#222226] focus:outline-none text-white placeholder-white"
-          />
-          <button
-            type="submit"
-            className="bg-slate-200 p-0 rounded h-12 text-black w-40 border border-transparent hover:bg-[#a1a5ae] transition cursor-pointer disabled:bg-slate-500"
-            disabled={!groupName}
-          >
-            Create Group
-          </button>
+          <div className="flex flex-col md:flex-row gap-3 items-center">
+            <input
+              autoFocus
+              id="groupName"
+              name="groupName"
+              placeholder="Group Name"
+              value={groupName}
+              onChange={(e) => setGroupName(e.target.value)}
+              className="flex-1 h-12 px-3 rounded bg-[#222226] border border-[#222226] focus:border-[#222226] focus:outline-none text-white placeholder-white"
+            />
+            <button
+              type="submit"
+              className="bg-slate-200 p-0 rounded h-12 text-black w-40 border border-transparent hover:bg-[#a1a5ae] transition cursor-pointer disabled:bg-slate-500"
+              disabled={!groupName}
+            >
+              Create Group
+            </button>
+          </div>
         </form>
       </div>
     </>

@@ -19,7 +19,10 @@ const Home: NextPage = () => {
         <meta name="description" content="" />
       </Head>
 
-      <div id="main" className="flex flex-col h-screen">
+      <div
+        id="main"
+        className="flex bg-gradient-to-tr from-slate-300 to-slate-500 flex-col h-[90vh] lg:h-screen"
+      >
         <Header />
         {session ? (
           <></>
@@ -28,13 +31,13 @@ const Home: NextPage = () => {
             {status === "loading" ? null : (
               <>
                 <Image height={100} src={logo} alt="logo" priority />
-                <p className="text-lg md:text-2xl lg:text-3xl font-medium text-white/50">
+                <p className="text-lg md:text-2xl lg:text-3xl font-medium text-black/50">
                   Welcome to LynkChat
                 </p>
                 <p>
                   <button
                     onClick={() => signIn("Auht0")}
-                    className="text-base text-white/50 transition hover:text-[#D7A761]/100"
+                    className="text-base text-black/50 transition hover:text-[#D7A761]/100"
                   >
                     Join us
                   </button>
@@ -42,7 +45,7 @@ const Home: NextPage = () => {
                 <p>
                   <button
                     onClick={() => signIn("Auht0")}
-                    className="bg-white/5 rounded h-12 px-6 font-medium text-white/60 text-lg border border-transparent inline-flex items-center"
+                    className="bg-white/5 rounded h-12 px-6 font-medium text-black/60 text-lg border border-transparent inline-flex items-center"
                   >
                     Sign in
                   </button>

@@ -32,7 +32,7 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
       }`}
     >
       {message.username !== session?.user?.username && (
-        <small className="text-xs text-white/50">
+        <small className="text-xs text-black/90">
           {message.name || message.username}&nbsp;
         </small>
       )}
@@ -44,7 +44,7 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
         }`}
       >
         {message?.avatar && (
-          <div className="w-12 h-12 overflow-hidden flex-shrink-0 rounded-full">
+          <div className="w-12 h-12 overflow-hidden flex-shrink-0 shadow-sm shadow-black rounded-full">
             <Image
               width={50}
               height={50}
@@ -55,10 +55,10 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
           </div>
         )}
         <span
-          className={`inline-flex whitespace-normal rounded-t-3xl shadow-sm shadow-[#000] space-x-2 items-start py-1 px-2 text-white ${
+          className={`inline-flex whitespace-normal rounded-t-3xl shadow-sm shadow-[#000] space-x-2 items-start py-1 px-2 text-black ${
             message.username === session?.user?.username
-              ? "bg-[#279599] rounded-l-3xl"
-              : "bg-[#363739] rounded-r-3xl"
+              ? "bg-[#32bbc0] rounded-l-3xl"
+              : "bg-slate-200 rounded-r-3xl"
           } `}
         >
           <span className="p-2 max-w-2xl break-normal whitespace-normal">
@@ -67,7 +67,7 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
         </span>
       </div>
 
-      <p className="text-xs text-white/50">
+      <p className="text-xs text-black">
         {differenceInHours(new Date(), new Date(message.createdAt)) >= 1
           ? formatRelative(new Date(message.createdAt), new Date())
           : formatDistance(new Date(message.createdAt), new Date(), {

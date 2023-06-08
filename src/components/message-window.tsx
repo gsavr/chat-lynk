@@ -25,7 +25,7 @@ export const MessageWindow: React.FC<MessageWindowProps> = (props) => {
   return (
     <>
       {error && <div>Please try again</div>}
-      <div className="flex-1 overflow-y-scroll no-scrollbar p-6">
+      <div className="flex-1 overflow-y-scroll  no-scrollbar backdrop-blur p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-center">
             <MessageList groupId={groupId} groupDBId={groupDBId} />

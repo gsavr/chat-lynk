@@ -59,7 +59,7 @@ export const MessageList: React.FC<MessageListProps> = ({
   return (
     <div className="flex h-full flex-col space-y-3 overflow-y-hidden no-scrollbar w-full">
       {!inView && data && (
-        <div className="py-1.5 w-full px-3 z-10 text-xs absolute flex justify-center bottom-0 mb-[120px] inset-x-0">
+        <div className="py-1.5 w-full px-3 z-10 text-xs absolute hidden md:flex justify-center bottom-0 mb-[120px] inset-x-0">
           <button
             className="py-1.5 px-3 text-xs bg-[#77777b] border border-none rounded-full text-white font-medium"
             onClick={() =>
@@ -71,7 +71,7 @@ export const MessageList: React.FC<MessageListProps> = ({
         </div>
       )}
       {renderMessages()}
-      <div ref={scrollRef} />
+      <div ref={scrollRef} className="hidden md:flex" />
     </div>
   );
 };

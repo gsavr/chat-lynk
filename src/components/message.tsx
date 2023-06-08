@@ -55,7 +55,7 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
           </div>
         )}
         <span
-          className={`inline-flex whitespace-normal rounded-t-3xl shadow-sm shadow-[#000] space-x-2 items-start p-3 text-white ${
+          className={`inline-flex whitespace-normal rounded-t-3xl shadow-sm shadow-[#000] space-x-2 items-start py-1 px-2 text-white ${
             message.username === session?.user?.username
               ? "bg-[#279599] rounded-l-3xl"
               : "bg-[#363739] rounded-r-3xl"

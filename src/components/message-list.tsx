@@ -23,20 +23,15 @@ export const MessageList: React.FC<MessageListProps> = ({
   });
 
   //query all messages for this group
-  const { loading, error, data } = useQuery<{
-    group: { messages: { edges: { node: IMessage }[] } };
-  }>(GET_RECENT_MESSAGES_QUERY, {
+  const { loading, error, data } = useQuery(GET_RECENT_MESSAGES_QUERY, {
     variables: {
-      id: groupDBId,
+      //id: groupDBId,
       last: 100,
     },
   });
   //console.log("m-list", loading);
   //console.log("m-list", error);
-
-  useEffect(() => {
-    console.log("m-list", data);
-  }, [data]);
+  //console.log("m-list", data);
 
   //scrolls to new message
   useEffect(() => {
@@ -68,7 +63,7 @@ export const MessageList: React.FC<MessageListProps> = ({
           </button>
         </div>
       )}
-      {data?.group?.messages?.edges?.map(({ node }) => (
+      {data?.messageCollection?.edges?.map(({ node }: any) => (
         <Message key={node?.id} message={node} />
       ))}
       <div ref={scrollRef} />

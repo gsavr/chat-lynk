@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+/* import { gql } from "@apollo/client";
 //DO NOT PASS a 'last' var since it is not used in the group()
 
 export const GET_RECENT_MESSAGES_QUERY = gql`
@@ -22,9 +22,9 @@ export const GET_RECENT_MESSAGES_QUERY = gql`
       }
     }
   }
-`;
+`; */
 
-/* //------- before there were groups
+//------- before there were groups
 import { gql } from "@apollo/client";
 
 export const GET_RECENT_MESSAGES_QUERY = gql`
@@ -33,7 +33,9 @@ export const GET_RECENT_MESSAGES_QUERY = gql`
       edges {
         node {
           id
-          group
+          group {
+            id
+          }
           username
           name
           avatar
@@ -44,4 +46,4 @@ export const GET_RECENT_MESSAGES_QUERY = gql`
       }
     }
   }
-`; */
+`;

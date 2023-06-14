@@ -7,7 +7,7 @@ import Link from "next/link";
 import { HamburgerButton } from "./hamburgerButton";
 
 interface HeaderProps {
-  open?: string | undefined;
+  open?: any | undefined;
   setOpen?: any | undefined;
   opening?: any | undefined;
   setOpening?: any | undefined;

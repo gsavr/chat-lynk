@@ -7,7 +7,6 @@ import { GroupsLanding } from "@/components/groups-landing";
 import { MessageWindow } from "@/components/message-window";
 import { Header } from "@/components/header";
 import { GroupsSidebar } from "@/components/groups-sidebar";
-import { HamburgerButton } from "@/components/hamburgerButton";
 
 interface GroupsProps {
   groupId: string;
@@ -45,7 +44,7 @@ const Groups: NextPage<GroupsProps> = (props) => {
       />
       <div
         id="main"
-        className="mt-[59px] flex h-[80vh] w-screen flex-col overflow-hidden bg-gradient-to-tr from-slate-300    to-slate-500 md:h-[93vh] lg:max-h-fit"
+        className="from-slate-300to-slate-500 mt-[59px] flex h-[80vh] w-screen flex-col overflow-hidden bg-gradient-to-tr md:h-[93vh] lg:max-h-fit"
       >
         <div className="flex overflow-hidden md:h-[93vh]">
           <GroupsSidebar

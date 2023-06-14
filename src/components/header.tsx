@@ -6,7 +6,7 @@ import { IconUser6Fill } from "./svg-icons";
 import Link from "next/link";
 import { HamburgerButton } from "./hamburgerButton";
 
-interface HamburgerButtonProps {
+interface HeaderProps {
   open: string;
   setOpen: any;
   opening: any;
@@ -15,7 +15,7 @@ interface HamburgerButtonProps {
   setMenuOpen: any;
 }
 
-export const Header: React.FC<HamburgerButtonProps> = (props) => {
+export const Header: React.FC<HeaderProps> = (props) => {
   const { open, setOpen, opening, setOpening, menuOpen, setMenuOpen } = props;
   //get user info from auth0
   const { data: session } = useSession();

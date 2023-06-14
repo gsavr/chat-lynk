@@ -37,7 +37,7 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
 
   return (
     <div
-      className={`${open} ${opening} mobile-menu flex w-full flex-col gap-3 overflow-auto  rounded border border-black bg-slate-200 px-2 pt-5 text-black md:flex md:w-1/4 lg:w-[15%]`}
+      className={`${open} ${opening} mobile-menu mt-[59px] flex w-full flex-col gap-3 overflow-hidden rounded  border border-black bg-slate-200 px-2 pt-5 text-black md:mt-0 md:flex md:w-1/4 lg:w-[15%]`}
     >
       <div className="flex items-start justify-between">
         <h2 className="w-full border-0 border-b border-black pb-3 pl-3 text-lg">
@@ -47,7 +47,7 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
           <IconBxMessageSquareAdd />{" "}
         </Link>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 overflow-scroll">
         {data?.groupCollection?.edges.map(({ node }: any) => (
           <Link
             key={node.groupId}

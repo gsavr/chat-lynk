@@ -35,34 +35,27 @@ const Groups: NextPage<GroupsProps> = (props) => {
       <Head>
         <title>LynkChat</title>
       </Head>
+      <Header
+        open={open}
+        setOpen={setOpen}
+        opening={opening}
+        setOpening={setOpening}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+      />
       <div
         id="main"
-        className="flex h-[100vh] w-screen flex-col overflow-hidden bg-gradient-to-tr from-slate-300 to-slate-500 lg:max-h-fit"
+        className="mt-[59px] flex h-[80vh] w-screen flex-col overflow-hidden bg-gradient-to-tr from-slate-300    to-slate-500 md:h-[93vh] lg:max-h-fit"
       >
-        <div className="backdrop-blur">
-          <Header />
-          <HamburgerButton
+        <div className="flex overflow-hidden md:h-[93vh]">
+          <GroupsSidebar
+            groupId={groupId}
             open={open}
-            setOpen={setOpen}
             opening={opening}
-            setOpening={setOpening}
-            menuOpen={menuOpen}
-            setMenuOpen={setMenuOpen}
+            closeMobileMenu={closeMobileMenu}
           />
-          <div className="flex h-[93vh]">
-            <GroupsSidebar
-              groupId={groupId}
-              open={open}
-              opening={opening}
-              closeMobileMenu={closeMobileMenu}
-            />
-            <div className="flex w-full flex-1 flex-col">
-              {!groupId ? (
-                <GroupsLanding />
-              ) : (
-                <MessageWindow groupId={groupId} />
-              )}
-            </div>
+          <div className="flex w-full flex-1 flex-col overflow-hidden">
+            {!groupId ? <GroupsLanding /> : <MessageWindow groupId={groupId} />}
           </div>
         </div>
       </div>

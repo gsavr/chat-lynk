@@ -67,11 +67,11 @@ export const NewMessageForm: React.FC<NewMessageFormProps> = ({
         placeholder="Write a message..."
         value={body}
         onChange={(e) => setBody(e.target.value)}
-        className="flex-1 h-12 px-3 rounded bg-[#222226] border border-[#222226] focus:border-[#222226] focus:outline-none text-white placeholder-white"
+        className="h-12 flex-1 rounded border border-[#222226] bg-[#222226] px-3 text-white placeholder-white focus:border-[#222226] focus:outline-none"
       />
       <button
         type="submit"
-        className="bg-slate-200 rounded h-12  text-black hover:bg-[#a1a5ae] w-24 text-lg border border-transparent transition cursor-pointer disabled:bg-slate-500"
+        className="h-12 w-24 cursor-pointer  rounded border border-transparent bg-slate-200 text-lg text-black transition hover:bg-[#a1a5ae] disabled:bg-slate-500"
         disabled={!body || !session}
       >
         Send

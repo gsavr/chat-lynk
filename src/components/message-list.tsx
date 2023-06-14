@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { isMobile } from "react-device-detect";
 import { GET_RECENT_MESSAGES_QUERY } from "@/gql/queries/getMessages";
 import { Message } from "@/components/message";
 
@@ -14,6 +15,7 @@ export const MessageList: React.FC<MessageListProps> = ({
   groupDBId,
 }) => {
   //console.log("m-list", groupId);
+  //console.log(isMobile);
 
   //tracks location of page
   const [scrollRef, inView, entry] = useInView({
@@ -22,12 +24,15 @@ export const MessageList: React.FC<MessageListProps> = ({
   });
 
   //query all messages for this group
-  const { loading, error, data } = useQuery(GET_RECENT_MESSAGES_QUERY, {
-    variables: {
-      //id: groupDBId,
-      last: 100,
-    },
-  });
+  const { loading, error, data, refetch } = useQuery(
+    GET_RECENT_MESSAGES_QUERY,
+    {
+      variables: {
+        //id: groupDBId,
+        last: 100,
+      },
+    }
+  );
   //console.log("m-list", loading);
   //console.log("m-list", error);
   //console.log("m-list", data);
@@ -40,16 +45,22 @@ export const MessageList: React.FC<MessageListProps> = ({
     });
   };
 
+  useEffect(() => {
+    const refetchQuery = () => refetch();
+    window.addEventListener("focus", refetchQuery);
+    return () => window.removeEventListener("focus", refetchQuery);
+  });
+
   //scrolls to new message
   useEffect(() => {
-    if (!inView) {
+    if (!inView && !isMobile) {
       entry?.target?.scrollIntoView({ behavior: "smooth" });
     }
   }, [data, entry, inView]);
 
   if (loading)
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="flex h-full items-center justify-center">
         <p className="text-white">Getting most recent chat messages.</p>
       </div>
     );
@@ -57,11 +68,11 @@ export const MessageList: React.FC<MessageListProps> = ({
   if (error) return <p className="text-white">Please Refresh.</p>;
 
   return (
-    <div className="flex h-full flex-col space-y-3 overflow-y-hidden no-scrollbar w-full">
+    <div className="no-scrollbar flex h-full w-full flex-col space-y-3 overflow-y-hidden">
       {!inView && data && (
-        <div className="py-1.5 w-full px-3 z-10 text-xs absolute hidden md:flex justify-center bottom-0 mb-[120px] inset-x-0">
+        <div className="absolute inset-x-0 bottom-0 z-10 mb-[120px] flex w-full justify-center py-1.5 px-3 text-xs">
           <button
-            className="py-1.5 px-3 text-xs bg-[#77777b] border border-none rounded-full text-white font-medium"
+            className="rounded-full border border-none bg-[#77777b] py-1.5 px-3 text-xs font-medium text-white"
             onClick={() =>
               entry?.target?.scrollIntoView({ behavior: "smooth" })
             }
@@ -71,7 +82,7 @@ export const MessageList: React.FC<MessageListProps> = ({
         </div>
       )}
       {renderMessages()}
-      <div ref={scrollRef} className="hidden md:flex" />
+      <div ref={scrollRef} className="" />
     </div>
   );
 };

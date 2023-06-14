@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_GROUPS_QUERY } from "@/gql/queries/getGroups";
 import Link from "next/link";
@@ -17,8 +18,14 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
   opening,
 }) => {
   //gets list of rooms to display
-  const { loading, error, data } = useQuery(GET_ALL_GROUPS_QUERY);
+  const { loading, error, data, refetch } = useQuery(GET_ALL_GROUPS_QUERY);
   // console.log("Groups", data);
+
+  useEffect(() => {
+    const refetchQuery = () => refetch();
+    window.addEventListener("focus", refetchQuery);
+    return () => window.removeEventListener("focus", refetchQuery);
+  });
 
   if (loading) {
     return <p>Loading...</p>;
@@ -30,7 +37,7 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
 
   return (
     <div
-      className={`${open} ${opening} mobile-menu flex w-full flex-col gap-3 overflow-auto  rounded border border-black bg-slate-200 px-2 pt-5 text-black md:flex md:w-[15%]`}
+      className={`${open} ${opening} mobile-menu flex w-full flex-col gap-3 overflow-auto  rounded border border-black bg-slate-200 px-2 pt-5 text-black md:flex md:w-1/4 lg:w-[15%]`}
     >
       <div className="flex items-start justify-between">
         <h2 className="w-full border-0 border-b border-black pb-3 pl-3 text-lg">

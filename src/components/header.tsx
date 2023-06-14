@@ -7,12 +7,12 @@ import Link from "next/link";
 import { HamburgerButton } from "./hamburgerButton";
 
 interface HeaderProps {
-  open?: string;
-  setOpen?: any;
-  opening?: any;
-  setOpening?: any;
-  menuOpen?: any;
-  setMenuOpen?: any;
+  open?: string | undefined;
+  setOpen?: any | undefined;
+  opening?: any | undefined;
+  setOpening?: any | undefined;
+  menuOpen?: any | undefined;
+  setMenuOpen?: any | undefined;
 }
 
 export const Header: React.FC<HeaderProps> = (props) => {

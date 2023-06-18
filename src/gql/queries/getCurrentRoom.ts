@@ -6,6 +6,7 @@ export const GET_CURRENT_GROUP_QUERY = gql`
       id
       groupId
       name
+      createdAt
     }
   }
 `;

@@ -3,11 +3,11 @@ import Head from "next/head";
 import { signIn, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
-import { Header } from "@/components/header";
+import { Header } from "@/components/header/header";
 
 import logo from "../images/logo-c.png";
 import Image from "next/image";
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/footer/footer";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -19,19 +19,16 @@ const Home: NextPage = () => {
         <meta name="description" content="" />
       </Head>
 
-      <div
-        id="main"
-        className="flex bg-gradient-to-tr from-slate-300 to-slate-500 flex-col h-[90vh] lg:h-screen"
-      >
+      <div id="main" className="flex h-[90vh] flex-col bg-main lg:h-screen">
         <Header />
         {session ? (
           <></>
         ) : (
-          <div className="h-full flex items-center justify-center flex-col space-y-2.5">
+          <div className="flex h-full flex-col items-center justify-center space-y-2.5 bg-white/40 backdrop-blur-lg backdrop-brightness-75">
             {status === "loading" ? null : (
               <>
                 <Image height={100} src={logo} alt="logo" priority />
-                <p className="text-lg md:text-2xl lg:text-3xl font-medium text-black/50">
+                <p className="text-lg font-medium text-black/50 md:text-2xl lg:text-3xl">
                   Welcome to LynkChat
                 </p>
                 <p>
@@ -45,7 +42,7 @@ const Home: NextPage = () => {
                 <p>
                   <button
                     onClick={() => signIn("Auht0")}
-                    className="bg-white/5 rounded h-12 px-6 font-medium text-black/60 text-lg border border-transparent inline-flex items-center"
+                    className="inline-flex h-12 items-center rounded border border-transparent bg-white/50 px-6 text-lg font-medium text-black/60"
                   >
                     Sign in
                   </button>

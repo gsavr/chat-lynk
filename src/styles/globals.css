@@ -89,4 +89,11 @@ body,
       @apply absolute bottom-0 left-0 top-0 z-20;
     }
   }
+  .form-1 {
+    @apply h-12 flex-1 rounded border border-[#c8c8df] bg-slate-200 px-3 text-black placeholder-slate-500 focus:border-[#7b7b82] focus:outline-none;
+  }
+
+  .btn {
+    @apply h-12 w-24 cursor-pointer  rounded border border-transparent bg-slate-200 text-lg text-black transition hover:bg-[#a1a5ae] disabled:cursor-default disabled:bg-white/5 disabled:text-black/20;
+  }
 }

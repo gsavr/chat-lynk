@@ -1,6 +1,7 @@
+import { FormEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useSession } from "next-auth/react";
-import { FormEvent, useState } from "react";
+import { Button } from "@material-tailwind/react";
 import useSound from "use-sound";
 import { ADD_NEW_MESSAGE_MUTATION } from "@/gql/mutations/addNewMessage";
 
@@ -67,15 +68,15 @@ export const NewMessageForm: React.FC<NewMessageFormProps> = ({
         placeholder="Write a message..."
         value={body}
         onChange={(e) => setBody(e.target.value)}
-        className="h-12 flex-1 rounded border border-[#222226] bg-[#222226] px-3 text-white placeholder-white focus:border-[#222226] focus:outline-none"
+        className="form-1"
       />
-      <button
+      <Button
         type="submit"
-        className="h-12 w-24 cursor-pointer  rounded border border-transparent bg-slate-200 text-lg text-black transition hover:bg-[#a1a5ae] disabled:bg-slate-500"
+        className="btn rounded-full text-black"
         disabled={!body || !session}
       >
         Send
-      </button>
+      </Button>
     </form>
   );
 };

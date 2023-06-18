@@ -20,16 +20,14 @@ export const MessageWindow: React.FC<MessageWindowProps> = (props) => {
   });
   const groupDBId = groupData?.group?.id;
   //console.log("MESSAGE_WINDOW_ CURRENT ROOM", groupData);
-  console.log(groupDBId);
+  //console.log(groupDBId);
 
   return (
     <>
       {error && <div>Please try again</div>}
-      <div className="no-scrollbar mb-20 grow overflow-y-scroll p-6 backdrop-blur">
-        <div className="mx-auto max-w-4xl">
-          <div className="flex items-center justify-between">
-            <MessageList groupId={groupId} groupDBId={groupDBId} />
-          </div>
+      <div className="no-scrollbar h-[90vh] grow overflow-y-auto overscroll-contain p-6 pb-20 backdrop-blur">
+        <div className="mx-auto flex max-w-4xl flex-1 items-end justify-between ">
+          <MessageList groupId={groupId} groupDBId={groupDBId} />
         </div>
       </div>
       <div className="fixed bottom-0 right-0 w-[100%] rounded border-t border-[#363739] bg-white/5 p-6 backdrop-blur-sm md:w-3/4 lg:w-[85%]">

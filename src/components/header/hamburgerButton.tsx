@@ -1,10 +1,12 @@
+import { Dispatch, SetStateAction } from "react";
+
 interface HamburgerButtonProps {
   open: string;
-  setOpen: any;
-  opening: any;
-  setOpening: any;
-  menuOpen: any;
-  setMenuOpen: any;
+  setOpen: Dispatch<SetStateAction<string>>;
+  opening: string;
+  setOpening: Dispatch<SetStateAction<string>>;
+  menuOpen: string;
+  setMenuOpen: Dispatch<SetStateAction<string>>;
 }
 
 export const HamburgerButton: React.FC<HamburgerButtonProps> = (props) => {

@@ -1,22 +1,31 @@
+import { Dispatch, SetStateAction } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import logo from "../images/logo-c.png";
+import logo from "../../images/logo-c.png";
 import { DropdownAccount } from "./dropdown-account";
-import { IconUser6Fill } from "./svg-icons";
+import { IconUser6Fill } from "../svg-icons/svg-icons";
 import Link from "next/link";
 import { HamburgerButton } from "./hamburgerButton";
 
 interface HeaderProps {
-  open?: any | undefined;
-  setOpen?: any | undefined;
-  opening?: any | undefined;
-  setOpening?: any | undefined;
-  menuOpen?: any | undefined;
-  setMenuOpen?: any | undefined;
+  open?: string;
+  setOpen?: Dispatch<SetStateAction<string>>;
+  opening?: string;
+  setOpening?: Dispatch<SetStateAction<string>>;
+  menuOpen?: string;
+  setMenuOpen?: Dispatch<SetStateAction<string>>;
 }
 
 export const Header: React.FC<HeaderProps> = (props) => {
-  const { open, setOpen, opening, setOpening, menuOpen, setMenuOpen } = props;
+  const {
+    // defaults set for when header is called without props from index.ts
+    open = "hidden",
+    setOpen = () => {},
+    opening = "closing",
+    setOpening = () => {},
+    menuOpen = "closed",
+    setMenuOpen = () => {},
+  } = props;
   //get user info from auth0
   const { data: session } = useSession();
   //console.log(session);

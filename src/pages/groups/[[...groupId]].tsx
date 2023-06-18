@@ -3,10 +3,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../api/auth/[...nextauth]";
-import { GroupsLanding } from "@/components/groups-landing";
-import { MessageWindow } from "@/components/message-window";
-import { Header } from "@/components/header";
-import { GroupsSidebar } from "@/components/groups-sidebar";
+import { GroupsLanding } from "@/components/message-window/groups-landing";
+import { MessageWindow } from "@/components/message-window/message-window";
+import { Header } from "@/components/header/header";
+import { GroupsSidebar } from "@/components/sidebar/groups-sidebar";
 
 interface GroupsProps {
   groupId: string;
@@ -44,16 +44,16 @@ const Groups: NextPage<GroupsProps> = (props) => {
       />
       <div
         id="main"
-        className="from-slate-300to-slate-500 mt-[59px] flex h-[80vh] w-screen flex-col overflow-hidden bg-gradient-to-tr md:h-[93vh] lg:max-h-fit"
+        className="from-slate-300to-slate-500 mt-[59px] flex h-[80vh] w-screen flex-col overflow-hidden bg-main backdrop-blur-lg md:h-[90vh] lg:h-[93vh] lg:max-h-fit"
       >
-        <div className="flex overflow-hidden md:h-[93vh]">
+        <div className="flex h-[80vh] overflow-hidden bg-white/40 backdrop-blur-lg backdrop-brightness-75 backdrop-hue-rotate-30 md:h-[90vh] lg:h-[93vh]">
           <GroupsSidebar
             groupId={groupId}
             open={open}
             opening={opening}
             closeMobileMenu={closeMobileMenu}
           />
-          <div className="flex w-full flex-1 flex-col overflow-hidden">
+          <div className="flex h-full w-full flex-1 flex-col overflow-hidden">
             {!groupId ? <GroupsLanding /> : <MessageWindow groupId={groupId} />}
           </div>
         </div>

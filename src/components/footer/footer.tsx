@@ -1,11 +1,11 @@
-import gs_logo from "../images/gs_logo.png";
-import github from "../images/github.png";
-import linkedin from "../images/linkedin.png";
+import gs_logo from "../../images/gs_logo.png";
+import github from "../../images/github.png";
+import linkedin from "../../images/linkedin.png";
 import Image from "next/image";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="sticky top-[100vh]  bg-slate-200 text-black">
+    <footer className="sticky top-[100vh]  bg-slate-200/80 text-black">
       <div className="container relative mx-auto px-5 pb-10 pt-0">
         {/*  Flex container for all items  */}
         <div className="flex flex-col items-center justify-between space-y-12 md:flex-row md:space-y-0">

@@ -1,9 +1,9 @@
+import { useEffect, useRef, useLayoutEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { isMobile } from "react-device-detect";
 import { GET_RECENT_MESSAGES_QUERY } from "@/gql/queries/getMessages";
-import { Message } from "@/components/message";
+import { Message } from "@/components/message-window/message";
 
 interface MessageListProps {
   groupId: string;
@@ -12,12 +12,12 @@ interface MessageListProps {
 
 export const MessageList: React.FC<MessageListProps> = ({
   groupId,
-  groupDBId,
+  //groupDBId,
 }) => {
   //console.log("m-list", groupId);
   //console.log(isMobile);
 
-  //tracks location of page
+  //tracks location of page for scrollRef
   const [scrollRef, inView, entry] = useInView({
     trackVisibility: true,
     delay: 1000,
@@ -33,10 +33,29 @@ export const MessageList: React.FC<MessageListProps> = ({
       },
     }
   );
-  //console.log("m-list", loading);
-  //console.log("m-list", error);
-  //console.log("m-list", data);
+  //console.log("m-list", loading); //console.log("m-list", data);//console.log("m-list", error);
 
+  // refetch when not in view and shows error
+  useEffect(() => {
+    const refetchQuery = () => refetch();
+    window.addEventListener("focus", refetchQuery);
+    return () => window.removeEventListener("focus", refetchQuery);
+  });
+
+  //scrolls to bottom at load -- does not work well on mobile
+  useEffect(() => {
+    if (!inView && !isMobile) {
+      entry?.target?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [entry, inView]);
+
+  //scrolls to new message
+  const bottomRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [data]);
+
+  // renders messages from data
   const renderMessages = () => {
     return data?.messageCollection?.edges?.map(({ node }: any) => {
       //console.log(node.group.id);
@@ -44,19 +63,6 @@ export const MessageList: React.FC<MessageListProps> = ({
         return <Message key={node?.id} message={node} />;
     });
   };
-
-  useEffect(() => {
-    const refetchQuery = () => refetch();
-    window.addEventListener("focus", refetchQuery);
-    return () => window.removeEventListener("focus", refetchQuery);
-  });
-
-  //scrolls to new message
-  useEffect(() => {
-    if (!inView && !isMobile) {
-      entry?.target?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [data, entry, inView]);
 
   if (loading)
     return (
@@ -68,21 +74,22 @@ export const MessageList: React.FC<MessageListProps> = ({
   if (error) return <p className="text-white">Please Refresh.</p>;
 
   return (
-    <div className="no-scrollbar flex h-full w-full flex-col space-y-3 overflow-y-hidden">
+    <div className="no-scrollbar flex h-full w-full flex-1 flex-col space-y-3 overflow-y-hidden">
       {!inView && data && (
         <div className="absolute inset-x-0 bottom-0 z-10 mb-[120px] flex w-full justify-center py-1.5 px-3 text-xs">
           <button
-            className="rounded-full border border-none bg-[#77777b] py-1.5 px-3 text-xs font-medium text-white"
-            onClick={() =>
-              entry?.target?.scrollIntoView({ behavior: "smooth" })
-            }
+            className="rounded-full border border-none bg-slate-200/50 py-1.5 px-3 text-xs font-medium text-black"
+            onClick={() => {
+              bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             Scroll to see latest messages
           </button>
         </div>
       )}
       {renderMessages()}
-      <div ref={scrollRef} className="" />
+      <div ref={scrollRef} />
+      <div ref={bottomRef} />
     </div>
   );
 };

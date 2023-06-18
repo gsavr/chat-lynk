@@ -4,9 +4,15 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        main: "url('../public/images/bg1.jpg')",
+        main: "url('/images/bg2.jpg')",
+      },
+      transitionProperty: {
+        height: "height",
       },
     },
+  },
+  variants: {
+    height: ["responsive", "hover", "focus"],
   },
   plugins: [],
 };

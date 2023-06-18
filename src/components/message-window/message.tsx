@@ -25,26 +25,26 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
 
   return (
     <div
-      className={`flex flex-col relative space-x-1 space-y-1 ${
+      className={`relative flex flex-col space-x-1 space-y-1 ${
         message.username === session?.user?.username
-          ? "text-right self-end"
+          ? "self-end text-right"
           : "text-left"
       }`}
     >
       {message.username !== session?.user?.username && (
-        <small className="text-xs text-black/90">
-          {message.name || message.username}&nbsp;
+        <small className="pl-1 text-xs text-black/90">
+          {message.name.split(" ")[0] || message.username}&nbsp;
         </small>
       )}
       <div
-        className={`flex relative space-x-1 ${
+        className={`relative flex space-x-1 ${
           message.username === session?.user?.username
             ? "flex-row-reverse space-x-reverse"
             : "flex-row"
         }`}
       >
         {message?.avatar && (
-          <div className="w-12 h-12 overflow-hidden flex-shrink-0 shadow-sm shadow-black rounded-full">
+          <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-full shadow-sm shadow-none">
             <Image
               width={50}
               height={50}
@@ -55,13 +55,13 @@ export const Message: React.FC<Props> = ({ message }: Props) => {
           </div>
         )}
         <span
-          className={`inline-flex whitespace-normal rounded-t-3xl shadow-sm shadow-[#000] space-x-2 items-start py-1 px-2 text-black ${
+          className={`inline-flex items-center space-x-2 whitespace-normal rounded-t-3xl py-0 px-2 text-black shadow-sm shadow-slate-500 ${
             message.username === session?.user?.username
-              ? "bg-[#32bbc0] rounded-l-3xl"
-              : "bg-slate-200 rounded-r-3xl"
+              ? "rounded-l-3xl bg-[#c1ecfa]" //[#c1ddfa]
+              : "rounded-r-3xl bg-slate-200"
           } `}
         >
-          <span className="p-2 max-w-2xl break-normal whitespace-normal">
+          <span className="max-w-2xl whitespace-normal break-normal px-2">
             {message.body}
           </span>
         </span>

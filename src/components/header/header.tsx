@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         <div className="flex items-center justify-between">
           {session ? (
             <>
-              <div className="inline-flex items-center space-x-3">
+              <div className=" inline-flex items-center space-x-3 px-6 md:px-0">
                 <Link href="/" className="flex items-center">
                   <Image
                     height={`${!isMobile ? 45 : 25}`}

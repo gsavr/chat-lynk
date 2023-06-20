@@ -45,7 +45,7 @@ const Groups: NextPage<GroupsProps> = (props) => {
       />
       <div
         id="main"
-        className="from-slate-300to-slate-500 mt-[59px] flex h-[80vh] w-screen flex-col overflow-hidden bg-main backdrop-blur-lg md:h-[90vh] lg:h-[93vh] lg:max-h-fit"
+        className="from-slate-300to-slate-500 mt-[40px] flex h-[80vh] w-screen flex-col overflow-hidden bg-main backdrop-blur-lg md:mt-[59px] md:h-[90vh] lg:h-[93vh] lg:max-h-fit"
       >
         <div className="flex h-[80vh] overflow-hidden bg-white/40 backdrop-blur-lg backdrop-brightness-75 backdrop-hue-rotate-30 md:h-[90vh] lg:h-[93vh]">
           <GroupsSidebar

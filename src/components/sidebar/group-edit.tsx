@@ -22,8 +22,11 @@ export const GroupEdit: React.FC<GroupEditProps> = (props) => {
 
   const [updateGroup] = useMutation(UPDATE_GROUP_MUTATION);
 
+  // set orignal name in order to compare to new name
   useEffect(() => {
-    setOriginalName(name);
+    if (name) {
+      setOriginalName(name);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -66,7 +69,7 @@ export const GroupEdit: React.FC<GroupEditProps> = (props) => {
           placeholder="Edit Name"
           value={name}
           setValue={setName}
-          disabled={!name}
+          disabled={!name || originalName === name}
           buttonName="Update Name"
           variant="groupEdit"
         />

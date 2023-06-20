@@ -8,7 +8,7 @@ interface GroupDeleteToggleProps {
 
 export const GroupDeleteToggle: React.FC<GroupDeleteToggleProps> = (props) => {
   const { enabled, setEnabled } = props;
-  console.log(enabled);
+  // console.log(enabled);
 
   return (
     <Switch

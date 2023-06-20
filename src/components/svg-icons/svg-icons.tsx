@@ -1,3 +1,4 @@
+import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import * as React from "react";
 
 interface IconProps {
@@ -169,6 +170,29 @@ export const IconChevronCompactUp: React.FC<IconProps> = (
       <path
         fillRule="evenodd"
         d="M7.776 5.553a.5.5 0 01.448 0l6 3a.5.5 0 11-.448.894L8 6.56 2.224 9.447a.5.5 0 11-.448-.894l6-3z"
+      />
+    </svg>
+  );
+};
+
+export const IconCloseOutline: React.FC<IconProps> = (
+  props: React.SVGProps<SVGSVGElement>
+) => {
+  return (
+    <svg
+      viewBox="0 0 512 512"
+      fill="currentColor"
+      height="1em"
+      width="1em"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={32}
+        d="M368 368L144 144M368 144L144 368"
       />
     </svg>
   );

@@ -41,6 +41,7 @@ const Groups: NextPage<GroupsProps> = (props) => {
         setOpening={setOpening}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
+        groupId={groupId}
       />
       <div
         id="main"

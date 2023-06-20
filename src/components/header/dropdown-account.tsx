@@ -7,6 +7,7 @@ import Link from "next/link";
 
 interface DropdownProps {
   session: Session;
+  isMobile: boolean;
 }
 
 export const DropdownAccount: React.FC<DropdownProps> = (props) => {
@@ -14,6 +15,7 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
     session: {
       user: { name, image },
     },
+    isMobile,
   } = props;
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
@@ -59,11 +61,11 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
               }}
             >
               {/* image needed to be inside div to show  */}
-              <div className="h-[50px] w-[50px] rounded-full">
+              <div className="h-[35px] w-[35px] rounded-full md:h-[50px] md:w-[50px]">
                 {image ? (
                   <Image
-                    width={50}
-                    height={50}
+                    width={`${!isMobile ? 50 : 35}`}
+                    height={`${!isMobile ? 50 : 35}`}
                     src={image}
                     alt={name || "User profile picture"}
                     title={name || "User profile picture"}

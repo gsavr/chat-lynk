@@ -1,11 +1,15 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import Image from "next/image";
-import logo from "../../images/logo-c.png";
+import { Typography } from "@material-tailwind/react";
+import { useQuery } from "@apollo/client";
+import { GET_CURRENT_GROUP_QUERY } from "@/gql/queries/getCurrentRoom";
+import { isMobile } from "react-device-detect";
+import { HamburgerButton } from "./hamburgerButton";
 import { DropdownAccount } from "./dropdown-account";
 import { IconUser6Fill } from "../svg-icons/svg-icons";
-import Link from "next/link";
-import { HamburgerButton } from "./hamburgerButton";
+import logo from "../../images/logo-c.png";
 
 interface HeaderProps {
   open?: string;
@@ -14,6 +18,7 @@ interface HeaderProps {
   setOpening?: Dispatch<SetStateAction<string>>;
   menuOpen?: string;
   setMenuOpen?: Dispatch<SetStateAction<string>>;
+  groupId?: string;
 }
 
 export const Header: React.FC<HeaderProps> = (props) => {
@@ -25,10 +30,20 @@ export const Header: React.FC<HeaderProps> = (props) => {
     setOpening = () => {},
     menuOpen = "closed",
     setMenuOpen = () => {},
+    groupId,
   } = props;
   //get user info from auth0
   const { data: session } = useSession();
   //console.log(session);
+  const { data: groupData } = useQuery(GET_CURRENT_GROUP_QUERY, {
+    variables: { groupId },
+  });
+  const [groupName, setGroupName] = useState("");
+
+  // Get room name on screen
+  useEffect(() => {
+    if (groupData) setGroupName(groupData?.group?.name);
+  }, [groupData]);
 
   return (
     <header className="fixed top-0 z-50 w-screen rounded-b border-b border-[#363739] bg-slate-200 p-1 ">
@@ -36,18 +51,28 @@ export const Header: React.FC<HeaderProps> = (props) => {
         <div className="flex items-center justify-between">
           {session ? (
             <>
-              <p className="inline-flex items-center space-x-3">
+              <div className="inline-flex items-center space-x-3">
                 <Link href="/" className="flex items-center">
-                  <Image height={45} src={logo} alt="logo" priority />
+                  <Image
+                    height={`${!isMobile ? 45 : 25}`}
+                    src={logo}
+                    alt="logo"
+                    priority
+                  />
 
-                  <span className="hidden pl-2 text-xl text-black md:block">
-                    LynkChat
-                  </span>
+                  <Typography>
+                    <span className="hidden pl-2 text-lg text-black md:block">
+                      LynkChat
+                    </span>
+                  </Typography>
                 </Link>
-              </p>
-              <div className="flex items-center space-x-1">
+              </div>
+              <Typography>
+                <span className="text-black">{groupName}</span>
+              </Typography>
+              <div className="flex items-center space-x-0">
                 {session?.user ? (
-                  <DropdownAccount session={session} />
+                  <DropdownAccount session={session} isMobile={isMobile} />
                 ) : (
                   <button
                     onClick={() => signOut()}

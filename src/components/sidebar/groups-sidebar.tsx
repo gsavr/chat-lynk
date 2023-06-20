@@ -66,7 +66,7 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
           >
             <Link
               href={`/groups/${node.groupId}`}
-              className={` flex-1 text-left`}
+              className={` flex-1 truncate text-left`}
               onClick={() => closeMobileMenu()}
             >
               {node.name}

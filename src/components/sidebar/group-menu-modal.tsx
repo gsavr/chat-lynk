@@ -1,15 +1,16 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_CURRENT_GROUP_QUERY } from "@/gql/queries/getCurrentRoom";
-import { DELETE_GROUP_MUTATION } from "@/gql/mutations/deleteGroup";
 import { Dialog, Transition } from "@headlessui/react";
-import { Button } from "@material-tailwind/react";
 import { useDateFormat } from "@/utilities/useDateFormat";
-import { IconIconGroup, IconUsergroupDelete } from "../svg-icons/svg-icons";
-import { IconCircle_menu } from "../svg-icons/svg-icons";
-import { GroupDeleteToggle } from "./group-delete-check";
-import { useRouter } from "next/router";
+import {
+  IconCloseOutline,
+  IconIconGroup,
+  IconCircle_menu,
+} from "../svg-icons/svg-icons";
+
 import { GroupEdit } from "./group-edit";
+import { GroupDelete } from "./group-delete";
 
 interface GroupMenuModalProps {
   groupId: string;
@@ -19,21 +20,14 @@ interface GroupMenuModalProps {
 export const GroupMenuModal: React.FC<GroupMenuModalProps> = (props) => {
   const { groupId, refetchGroups } = props;
   const [openGroupMenu, setOpenGroupMenu] = useState(false);
-  const [enabledDelete, setEnabledDelete] = useState(false);
+  const [name, setName] = useState("");
 
   const { data, refetch } = useQuery(GET_CURRENT_GROUP_QUERY, {
     variables: { groupId },
   });
   //   console.log(data);
   //   console.log(typeof data?.group?.createdAt);
-
-  const [name, setName] = useState("");
-  const [loading, setLoading] = useState(false);
   const cancelButtonRef = useRef(null);
-
-  const [deleteGroup] = useMutation(DELETE_GROUP_MUTATION);
-
-  const router = useRouter();
   const date = useDateFormat(data?.group?.createdAt);
 
   useEffect(() => {
@@ -41,25 +35,6 @@ export const GroupMenuModal: React.FC<GroupMenuModalProps> = (props) => {
       setName(data?.group?.name);
     }
   }, [data]);
-
-  // delete group
-  const handleDeleteGroup = () => {
-    setLoading(true);
-    //mutation
-    deleteGroup({
-      variables: { groupId },
-    }) // on success
-      .then(() => {
-        refetchGroups();
-        setLoading(false);
-        setOpenGroupMenu(false);
-        router.push(`/groups`);
-      })
-      .catch((err) => {
-        // Handle error
-        console.log(err);
-      });
-  };
 
   return (
     <>
@@ -120,7 +95,12 @@ export const GroupMenuModal: React.FC<GroupMenuModalProps> = (props) => {
                             {name}
                           </Dialog.Title>
                         </div>
-                        <div>x</div>
+                        <button
+                          onClick={() => setOpenGroupMenu(false)}
+                          className="rounded-full hover:bg-slate-100"
+                        >
+                          <IconCloseOutline height="25px" width="25px" />
+                        </button>
                       </div>
                       <div className="mt-8 flex w-full flex-col items-start gap-3">
                         {date && <p className="text-sm">Created on: {date}</p>}
@@ -135,29 +115,11 @@ export const GroupMenuModal: React.FC<GroupMenuModalProps> = (props) => {
                           />
                         </div>
                         {/* DELETE GROUP ZONE */}
-                        <div className="mt-4 flex w-full items-center border-0 border-t border-slate-400 pt-4">
-                          <Button
-                            onClick={handleDeleteGroup}
-                            className="btn -py-2 -ml-4 inline-flex w-fit scale-75 items-center justify-center bg-red-500 px-2  text-white hover:bg-red-700 disabled:bg-red-300"
-                            disabled={!enabledDelete}
-                          >
-                            <IconUsergroupDelete height="48px" />
-                            <span className="pl-4 text-sm">Delete Group</span>
-                          </Button>
-                          <GroupDeleteToggle
-                            enabled={enabledDelete}
-                            setEnabled={setEnabledDelete}
-                          />
-                          <span className="pl-4 text-xs">
-                            {enabledDelete ? (
-                              <span className="text-red-500">
-                                Are you sure?
-                              </span>
-                            ) : (
-                              "Danger Zone!"
-                            )}
-                          </span>
-                        </div>
+                        <GroupDelete
+                          groupId={groupId}
+                          refetchGroups={refetchGroups}
+                          setOpenGroupMenu={setOpenGroupMenu}
+                        />
                       </div>
                     </div>
                   </div>

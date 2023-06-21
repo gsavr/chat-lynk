@@ -9,14 +9,12 @@ import { motion, AnimatePresence } from "framer-motion";
 interface GroupsSidebarProps {
   groupId: string;
   open: string;
-  opening: string;
   closeMobileMenu: () => void;
 }
 
 export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
   groupId,
   open,
-  opening,
   closeMobileMenu,
 }) => {
   //gets list of rooms to display
@@ -37,7 +35,7 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
   if (error) {
     return (
       <p
-        className={`${open} ${opening} mobile-menu mt-[59px] flex w-full flex-col gap-3 overflow-hidden rounded  border border-black bg-slate-200 px-2 pt-5 text-black md:mt-0 md:flex md:w-1/4 lg:w-[15%]`}
+        className={`${open} mobile-menu mt-[43px] flex w-full flex-col gap-3 overflow-hidden rounded border  border-black bg-slate-200 px-2 pt-5 text-black  md:mt-0 md:flex md:w-1/4 lg:w-[15%]`}
       >
         {/*  Error: {error.message} */}Please Reload
       </p>
@@ -47,11 +45,11 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className={`${open} ${opening} mobile-menu mt-[59px] flex w-full flex-col 
-   gap-3 overflow-hidden rounded border border-black bg-slate-200 px-2 pt-5 font-light text-black md:mt-0 md:flex md:w-1/4 md:bg-slate-200/90 lg:w-[15%]`}
+        key={open}
+        initial={{ x: -300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: -300, opacity: 0 }}
+        className={`${open}  mobile-menu mt-[44px] flex w-full flex-col gap-3 overflow-hidden rounded border border-black bg-slate-200 px-2 pt-5 font-light text-black md:mt-0 md:flex md:w-1/4 md:bg-slate-200/90 lg:w-[15%]`}
       >
         <div className="flex items-start justify-between">
           <h2 className="w-full border-0 border-b border-black pb-3 pl-3 text-lg">

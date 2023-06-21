@@ -44,6 +44,7 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
 
   return (
     <AnimatePresence>
+      {/* key is mandatory and will animate when "open" changes */}
       <motion.div
         key={open}
         initial={{ x: -300, opacity: 0 }}

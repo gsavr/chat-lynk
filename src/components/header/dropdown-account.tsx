@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { type Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { IconUser6Fill } from "../svg-icons/svg-icons";
 import Link from "next/link";
 
@@ -76,36 +77,43 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
                 )}
               </div>
             </button>
-            <div
-              className={`${show} absolute top-11 -right-10 z-50 float-left mt-2 list-none flex-col rounded bg-slate-200/90 py-2 text-left text-base shadow-sm shadow-slate-500`}
-              style={{ minWidth: "12rem" }}
-            >
-              <div
-                className={
-                  "block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-black"
-                }
+
+            <AnimatePresence>
+              <motion.div
+                key={show}
+                initial={{ scale: 0.3, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.3, opacity: 0 }}
+                className={`${show} absolute top-11 -right-10 z-50 float-left mt-2 list-none flex-col rounded bg-slate-200/90 py-2 text-left text-base shadow-sm shadow-slate-500`}
+                style={{ minWidth: "12rem" }}
               >
-                {name}
-              </div>
-              <Link
-                href="/"
-                className={
-                  "block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal  text-black"
-                }
-                onClick={() => closeDropdownPopover()}
-              >
-                Create / Join a room
-              </Link>
-              <div className="opacity-85 my-2 h-0 border border-t-0 border-solid border-slate-800" />
-              <button
-                className={
-                  "block w-full whitespace-nowrap bg-transparent py-2 px-4 text-left text-sm  font-normal text-black"
-                }
-                onClick={() => signOut()}
-              >
-                Sign Out
-              </button>
-            </div>
+                <div
+                  className={
+                    "block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-black"
+                  }
+                >
+                  {name}
+                </div>
+                <Link
+                  href="/"
+                  className={
+                    "block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal  text-black"
+                  }
+                  onClick={() => closeDropdownPopover()}
+                >
+                  Create / Join a room
+                </Link>
+                <div className="opacity-85 my-2 h-0 border border-t-0 border-solid border-slate-800" />
+                <button
+                  className={
+                    "block w-full whitespace-nowrap bg-transparent py-2 px-4 text-left text-sm  font-normal text-black"
+                  }
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </button>
+              </motion.div>{" "}
+            </AnimatePresence>
           </div>
         </div>
       </div>

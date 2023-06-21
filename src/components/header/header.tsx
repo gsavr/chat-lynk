@@ -97,7 +97,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
               <div className="flex items-center">
                 <button
                   onClick={() => signIn("Auht0")}
-                  className="inline-flex h-12 w-12 items-center rounded-full border border-transparent bg-black/5 px-2 text-3xl text-black"
+                  className="inline-flex h-12 w-12 items-center rounded-full border border-transparent bg-black/5 px-2 text-3xl text-[#4d5153]"
                 >
                   <IconUser6Fill />
                 </button>

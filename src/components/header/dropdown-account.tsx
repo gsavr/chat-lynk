@@ -92,7 +92,7 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
                 className={
                   "block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal  text-black"
                 }
-                //onClick={(e) => e.preventDefault()}
+                onClick={() => closeDropdownPopover()}
               >
                 Create / Join a room
               </Link>

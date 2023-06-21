@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_GROUP_MUTATION } from "@/gql/mutations/createGroup";
 import { v4 as uuid } from "uuid";
 import { GroupForm } from "../form/group-form";
+import { Typography } from "@material-tailwind/react";
 
 export const GroupsLanding: React.FC = () => {
   const router = useRouter();
@@ -37,7 +38,9 @@ export const GroupsLanding: React.FC = () => {
   return (
     <>
       <div className="mx-auto flex flex-1 flex-col items-center justify-center gap-6 p-4 text-black">
-        <p>Create a new Group or join on menu</p>
+        <Typography>
+          <p>Create a new Group or join on menu</p>
+        </Typography>
         <GroupForm
           handleSubmit={createRoom}
           id="groupName"

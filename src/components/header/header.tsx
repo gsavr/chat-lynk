@@ -10,6 +10,7 @@ import { HamburgerButton } from "./hamburgerButton";
 import { DropdownAccount } from "./dropdown-account";
 import { IconUser6Fill } from "../svg-icons/svg-icons";
 import logo from "../../images/logo-c.png";
+import { motion } from "framer-motion";
 
 interface HeaderProps {
   open?: string;
@@ -42,8 +43,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
   // Get room name on screen
   useEffect(() => {
+    if (!groupId) setGroupName("");
     if (groupData) setGroupName(groupData?.group?.name);
-  }, [groupData]);
+  }, [groupData, groupId]);
 
   return (
     <header className="fixed top-0 z-50 w-screen rounded-b border-b border-[#363739] bg-slate-200 p-1 ">
@@ -67,9 +69,15 @@ export const Header: React.FC<HeaderProps> = (props) => {
                   </Typography>
                 </Link>
               </div>
-              <Typography>
-                <span className="text-black">{groupName}</span>
-              </Typography>
+              <motion.span
+                initial={{ x: 200, opacity: 0.4 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                key={groupName} //key will tell motion to check for changes and reanimate
+                className="text-black"
+              >
+                <Typography>{groupName}</Typography>
+              </motion.span>
               <div className="flex items-center space-x-0">
                 {session?.user ? (
                   <DropdownAccount session={session} isMobile={isMobile} />

@@ -64,8 +64,8 @@ export const DropdownAccount: React.FC<DropdownProps> = (props) => {
               <div className="h-[35px] w-[35px] rounded-full md:h-[50px] md:w-[50px]">
                 {image ? (
                   <Image
-                    width={`${!isMobile ? 50 : 35}`}
-                    height={`${!isMobile ? 50 : 35}`}
+                    width={50}
+                    height={50}
                     src={image}
                     alt={name || "User profile picture"}
                     title={name || "User profile picture"}

@@ -4,6 +4,7 @@ import { GET_ALL_GROUPS_QUERY } from "@/gql/queries/getGroups";
 import Link from "next/link";
 import { IconBxMessageSquareAdd } from "../svg-icons/svg-icons";
 import { GroupMenuModal } from "./group-menu-modal";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface GroupsSidebarProps {
   groupId: string;
@@ -44,39 +45,44 @@ export const GroupsSidebar: React.FC<GroupsSidebarProps> = ({
   }
 
   return (
-    <div
-      className={`${open} ${opening} mobile-menu mt-[59px] flex w-full flex-col 
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className={`${open} ${opening} mobile-menu mt-[59px] flex w-full flex-col 
    gap-3 overflow-hidden rounded border border-black bg-slate-200 px-2 pt-5 font-light text-black md:mt-0 md:flex md:w-1/4 md:bg-slate-200/90 lg:w-[15%]`}
-    >
-      <div className="flex items-start justify-between">
-        <h2 className="w-full border-0 border-b border-black pb-3 pl-3 text-lg">
-          Groups
-        </h2>
-        <Link href={"/"} className="" onClick={() => closeMobileMenu()}>
-          <IconBxMessageSquareAdd />{" "}
-        </Link>
-      </div>
-      <div className="flex flex-col gap-2 overflow-scroll overscroll-contain">
-        {data?.groupCollection?.edges.map(({ node }: any) => (
-          <div
-            key={node.groupId}
-            className={`inline-flex flex-1 items-center justify-between rounded py-1 px-3 text-left hover:bg-slate-100 hover:font-light hover:text-slate-800 ${
-              node.groupId === groupId && " bg-slate-600 font-thin text-white"
-            }`}
-          >
-            <Link
-              href={`/groups/${node.groupId}`}
-              className={` flex-1 truncate text-left`}
-              onClick={() => closeMobileMenu()}
+      >
+        <div className="flex items-start justify-between">
+          <h2 className="w-full border-0 border-b border-black pb-3 pl-3 text-lg">
+            Groups
+          </h2>
+          <Link href={"/"} className="" onClick={() => closeMobileMenu()}>
+            <IconBxMessageSquareAdd />{" "}
+          </Link>
+        </div>
+        <div className="flex flex-col gap-2 overflow-scroll overscroll-contain">
+          {data?.groupCollection?.edges.map(({ node }: any) => (
+            <div
+              key={node.groupId}
+              className={`inline-flex flex-1 items-center justify-between rounded py-1 px-3 text-left hover:bg-slate-100 hover:font-light hover:text-slate-800 ${
+                node.groupId === groupId && " bg-slate-600 font-thin text-white"
+              }`}
             >
-              {node.name}
-            </Link>
-            {node.groupId === groupId && (
-              <GroupMenuModal groupId={groupId} refetchGroups={refetch} />
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+              <Link
+                href={`/groups/${node.groupId}`}
+                className={` flex-1 truncate text-left`}
+                onClick={() => closeMobileMenu()}
+              >
+                {node.name}
+              </Link>
+              {node.groupId === groupId && (
+                <GroupMenuModal groupId={groupId} refetchGroups={refetch} />
+              )}
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };

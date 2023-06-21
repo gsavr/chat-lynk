@@ -22,9 +22,7 @@ export const HamburgerButton: React.FC<HamburgerButtonProps> = (props) => {
     } else if (open === "flex") {
       setOpening("closing");
       setMenuOpen("closed");
-      setTimeout(() => {
-        setOpen("hidden");
-      }, 500);
+      setOpen("hidden");
     }
   };
 

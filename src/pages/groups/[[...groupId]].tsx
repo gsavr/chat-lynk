@@ -51,7 +51,6 @@ const Groups: NextPage<GroupsProps> = (props) => {
           <GroupsSidebar
             groupId={groupId}
             open={open}
-            opening={opening}
             closeMobileMenu={closeMobileMenu}
           />
           <div className="flex h-full w-full flex-1 flex-col overflow-hidden">

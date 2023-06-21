@@ -76,15 +76,6 @@ body,
     border: black;
   }
   @media (max-width: 800px) {
-    .opening {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-    .closing {
-      transform: translateX(-300px);
-      opacity: 0;
-    }
-
     .mobile-menu {
       @apply absolute bottom-0 left-0 top-0 z-20;
     }

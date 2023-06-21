@@ -1,8 +1,8 @@
-# Chatbase
+# LynkChat
 
-Realtime chat using GraphQL Live Queries, Next.js and NextAuth.js &mdash; [tutorial](https://grafbase.com/guides/how-to-build-a-real-time-chat-app-with-nextjs-graphql-and-server-sent-events)
+Realtime chat using GraphQL Live Queries, Next.js and NextAuth.js
 
-![Chatbase App](/public/og.png)
+![LynkChat App](https://)
 
 ## Tools used
 
@@ -14,6 +14,8 @@ Realtime chat using GraphQL Live Queries, Next.js and NextAuth.js &mdash; [tutor
 - GraphQL Live Queries
 - GraphQL
 - Tailwind CSS
+- Framer motion
+<!--
 
 ## Local Development
 
@@ -36,3 +38,4 @@ Realtime chat using GraphQL Live Queries, Next.js and NextAuth.js &mdash; [tutor
 6. Deploy to Vercel and add `.env` values (`NEXT_PUBLIC_GRAFBASE_API_URL`\*, `NEXTAUTH_SECRET`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`)
 
 \* `NEXT_PUBLIC_GRAFBASE_URL` is your production API endpoint. You can find this from the **Connect** modal in your [project dashboard](https://grafbase.com/dashboard).
+-->

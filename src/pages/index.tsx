@@ -8,6 +8,7 @@ import logo from "../images/logo-c.svg";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Footer } from "@/components/footer/footer";
+import { isMobile } from "react-device-detect";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -35,7 +36,7 @@ const Home: NextPage = () => {
                   }}
                 >
                   <motion.div
-                    initial={{ scale: 5, y: 100 }}
+                    initial={{ scale: `${isMobile ? 2.3 : 5}`, y: 100 }}
                     animate={{ scale: 1, y: 0 }}
                     transition={{
                       duration: 0.8,

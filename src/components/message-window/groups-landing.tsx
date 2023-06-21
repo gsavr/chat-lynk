@@ -5,6 +5,7 @@ import { CREATE_GROUP_MUTATION } from "@/gql/mutations/createGroup";
 import { v4 as uuid } from "uuid";
 import { GroupForm } from "../form/group-form";
 import { Typography } from "@material-tailwind/react";
+import { motion } from "framer-motion";
 
 export const GroupsLanding: React.FC = () => {
   const router = useRouter();
@@ -37,9 +38,14 @@ export const GroupsLanding: React.FC = () => {
   };
   return (
     <>
-      <div className="mx-auto flex flex-1 flex-col items-center justify-center gap-6 p-4 text-black">
+      <motion.div
+        initial={{ scale: 0.3 }}
+        whileInView={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="mx-auto flex flex-1 flex-col items-center justify-center gap-6 p-4 text-black"
+      >
         <Typography>
-          <p>Create a new Group or join on menu</p>
+          <span>Create a new Group or join on menu</span>
         </Typography>
         <GroupForm
           handleSubmit={createRoom}
@@ -51,7 +57,7 @@ export const GroupsLanding: React.FC = () => {
           disabled={!groupName}
           buttonName="Create Group"
         />
-      </div>
+      </motion.div>
     </>
   );
 };

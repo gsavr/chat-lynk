@@ -9,7 +9,7 @@ import { isMobile } from "react-device-detect";
 import { HamburgerButton } from "./hamburgerButton";
 import { DropdownAccount } from "./dropdown-account";
 import { IconUser6Fill } from "../svg-icons/svg-icons";
-import logo from "../../images/logo-c.png";
+import logo from "../../images/logo-c.svg";
 import { motion } from "framer-motion";
 
 interface HeaderProps {

@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
           <div className="mt-14">
             <div className="flex space-x-3">
               <Typography>
-                <p>&copy; 2023 Giorgio Savron</p>
+                <span>&copy; 2023 Giorgio Savron</span>
               </Typography>
             </div>
           </div>

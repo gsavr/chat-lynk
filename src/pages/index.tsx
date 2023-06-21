@@ -20,7 +20,10 @@ const Home: NextPage = () => {
         <meta name="description" content="" />
       </Head>
 
-      <div id="main" className="flex h-[90vh] flex-col bg-main lg:h-screen">
+      <div
+        id="main"
+        className="flex h-[90vh] flex-col bg-main md:h-[95vh] lg:h-screen"
+      >
         <Header />
         {session ? (
           <></>

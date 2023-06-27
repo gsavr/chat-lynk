@@ -16,9 +16,9 @@ export const CarouselSlide2: React.FC = () => {
         src={chat}
         height={400}
         alt="chat"
-        className="z-10 h-[150px] w-[218px] translate-y-9 md:h-[400px] md:w-[583px]"
+        className="z-10 h-[150px] w-[218px] translate-y-9 md:h-[400px] md:w-[583px] md:translate-y-4 md:translate-x-9"
       />
-      <Card className="mt-1 w-56 rounded bg-white/50 p-0  text-black/60 md:mt-6 md:w-96">
+      <Card className="mt-1 w-56 rounded bg-white/50 p-0  text-black/60 md:mt-6 md:w-96 md:-translate-x-14">
         <CardBody>
           <Typography
             variant="h5"

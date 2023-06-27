@@ -12,12 +12,12 @@ import android from "../../images/android.png";
 
 export const CarouselSlide3: React.FC = () => {
   return (
-    <div className="flex translate-y-9 flex-col items-center justify-between gap-0 md:translate-y-0 md:flex-row md:gap-10">
+    <div className="flex translate-y-9 flex-col items-center gap-0 md:translate-y-0 md:flex-row lg:justify-between lg:gap-10">
       <Image
         src={iphone}
         height={400}
         alt="chat"
-        className="z-10 h-[181px] w-[100px] -translate-x-24 translate-y-5 rotate-6 md:h-[400px] md:w-[220px]"
+        className="z-10 h-[181px] w-[100px] -translate-x-24 translate-y-5 rotate-6 md:h-[400px] md:w-[220px] md:translate-x-0 md:translate-y-0"
       />
       <Card className="mt-1 w-56 rounded bg-white/50 p-0  text-black/60 md:mt-6 md:w-96">
         <CardBody>
@@ -42,7 +42,7 @@ export const CarouselSlide3: React.FC = () => {
         src={android}
         height={400}
         alt="chat"
-        className="h-[186px] w-[100px] -translate-y-16 translate-x-20 -rotate-12 md:h-[400px] md:w-[215px]
+        className="h-[186px] w-[100px] -translate-y-16 translate-x-20 -rotate-12 md:h-[400px] md:w-[215px] md:translate-x-0 md:translate-y-0
         "
       />
     </div>

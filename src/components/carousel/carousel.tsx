@@ -8,8 +8,8 @@ export const CarouselLanding: React.FC = () => {
   return (
     <Carousel
       transition={{ type: "tween", duration: 2 }}
-      // autoplay
-      // autoplayDelay={5000}
+      autoplay
+      autoplayDelay={5000}
       loop
       draggable
       color="black"

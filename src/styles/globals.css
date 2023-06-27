@@ -87,4 +87,8 @@ body,
   .btn {
     @apply h-12 w-24 cursor-pointer  rounded border border-transparent bg-slate-200 text-lg text-black transition hover:bg-[#a1a5ae] disabled:cursor-default disabled:bg-white/5 disabled:text-black/20;
   }
+
+  .carousel-slide {
+    @apply flex h-full w-screen flex-col items-center justify-center space-y-2.5 bg-white/40 backdrop-blur-lg backdrop-brightness-75;
+  }
 }

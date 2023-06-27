@@ -46,7 +46,11 @@ export const Footer: React.FC = () => {
               </a>
             </div>
             <div>
-              <a href="#" target="_blank" rel="noreferrer">
+              <a
+                href="https://github.com/gsavr/chat-lynk"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Image
                   src={github}
                   alt="github"

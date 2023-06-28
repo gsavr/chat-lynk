@@ -89,6 +89,6 @@ body,
   }
 
   .carousel-slide {
-    @apply flex h-full w-screen flex-col items-center justify-center space-y-2.5 bg-white/40 backdrop-blur-lg backdrop-brightness-75;
+    @apply flex h-screen w-screen flex-col items-center justify-center space-y-2.5 bg-white/40 backdrop-blur-lg backdrop-brightness-75 md:h-full;
   }
 }

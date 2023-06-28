@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 
       <div
         id="main"
-        className="flex h-[90vh] flex-col overflow-x-hidden bg-main md:h-[95vh] lg:h-screen"
+        className="flex h-auto flex-col overflow-x-hidden bg-main md:h-[95vh] lg:h-screen"
       >
         <Header />
         {session ? (

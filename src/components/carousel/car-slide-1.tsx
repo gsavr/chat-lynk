@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
-import { isMobile } from "react-device-detect";
+import { isMobile, isDesktop, isIPad13 } from "react-device-detect";
 import Image from "next/image";
 import logo from "../../images/logo-c.svg";
 
@@ -15,14 +15,19 @@ export const CarouselSlide1: React.FC = () => {
         }}
       >
         <motion.div
-          initial={{ scale: `${isMobile ? 2.3 : 5}`, y: 100 }}
+          initial={{ scale: `${isMobile ? 1.5 : 5}`, y: 100 }}
           animate={{ scale: 1, y: 0 }}
           transition={{
             duration: 0.8,
             delay: 1,
           }}
         >
-          <Image height={100} src={logo} alt="logo" priority />
+          <Image
+            height={`${isDesktop || isIPad13 ? 300 : 150}`}
+            src={logo}
+            alt="logo"
+            priority
+          />
         </motion.div>
       </motion.div>
       <motion.div

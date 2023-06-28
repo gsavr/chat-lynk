@@ -11,14 +11,14 @@ import chat from "../../images/chat.png";
 
 export const CarouselSlide2: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-between md:flex-row">
+    <div className="flex flex-col items-center md:flex-row lg:justify-between">
       <Image
         src={chat}
         height={400}
         alt="chat"
-        className="z-10 h-[150px] w-[218px] translate-y-9 md:h-[400px] md:w-[583px] md:translate-y-4 md:translate-x-9"
+        className="z-10 h-auto w-[300px] translate-y-5 md:h-3/4 md:w-3/4 md:translate-x-14 lg:h-full lg:translate-x-20 lg:translate-y-4"
       />
-      <Card className="mt-1 w-56 rounded bg-white/50 p-0  text-black/60 md:mt-6 md:w-96 md:-translate-x-14">
+      <Card className="mt-1 w-72 grow -translate-y-2 translate-x-3 rounded bg-white/50 p-0 text-black/60  md:mt-6 md:w-2/3 md:translate-y-0 md:-translate-x-14 lg:w-7/12  lg:-translate-x-24 ">
         <CardBody>
           <Typography
             variant="h5"

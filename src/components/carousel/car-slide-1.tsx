@@ -15,7 +15,7 @@ export const CarouselSlide1: React.FC = () => {
         }}
       >
         <motion.div
-          initial={{ scale: `${isMobile ? 1.5 : 5}`, y: 100 }}
+          initial={{ scale: 1.5, y: 100 }}
           animate={{ scale: 1, y: 0 }}
           transition={{
             duration: 0.8,

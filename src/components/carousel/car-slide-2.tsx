@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import chat from "../../images/chat.png";
+import chat from "../../images/chat.svg";
 
 export const CarouselSlide2: React.FC = () => {
   return (

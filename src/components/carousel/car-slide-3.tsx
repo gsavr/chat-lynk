@@ -7,8 +7,8 @@ import {
 } from "@material-tailwind/react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import iphone from "../../images/iphone.png";
-import android from "../../images/android.png";
+import iphone from "../../images/iphone.svg";
+import android from "../../images/android.svg";
 
 export const CarouselSlide3: React.FC = () => {
   return (
